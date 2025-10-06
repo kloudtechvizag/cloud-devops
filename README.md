@@ -257,30 +257,171 @@ git merge feature-login    # Merge branch
 git branch -d feature-login # Delete branch
 ```
 
-#### 2.3 Branching Strategy
+#### 2.3 Branching Strategies
 
+**Git Flow Strategy (Traditional)**
 ```mermaid
 gitgraph
     commit id: "Initial"
     branch develop
     checkout develop
-    commit id: "Dev-1"
-    branch feature
-    checkout feature
-    commit id: "Feature-1"
-    commit id: "Feature-2"
+    commit id: "Dev setup"
+    
+    branch feature/login
+    checkout feature/login
+    commit id: "Add login"
+    commit id: "Fix tests"
     checkout develop
-    merge feature
-    commit id: "Dev-2"
+    merge feature/login
+    
+    branch feature/payment
+    checkout feature/payment
+    commit id: "Payment API"
+    checkout develop
+    merge feature/payment
+    commit id: "Integration"
+    
     checkout main
     merge develop
-    commit id: "Release-1"
-    branch hotfix
-    checkout hotfix
-    commit id: "Hotfix-1"
+    commit id: "v1.0.0"
+    
+    branch hotfix/security
+    checkout hotfix/security
+    commit id: "Security fix"
     checkout main
-    merge hotfix
-    commit id: "Release-1.1"
+    merge hotfix/security
+    commit id: "v1.0.1"
+    checkout develop
+    merge hotfix/security
+```
+
+**GitHub Flow Strategy (Simple)**
+```mermaid
+gitgraph
+    commit id: "Initial"
+    commit id: "Setup"
+    
+    branch feature/user-auth
+    checkout feature/user-auth
+    commit id: "Auth logic"
+    commit id: "Add tests"
+    checkout main
+    merge feature/user-auth
+    commit id: "Deploy v1.1"
+    
+    branch feature/dashboard
+    checkout feature/dashboard
+    commit id: "Dashboard UI"
+    commit id: "API integration"
+    checkout main
+    merge feature/dashboard
+    commit id: "Deploy v1.2"
+    
+    branch hotfix/bug-fix
+    checkout hotfix/bug-fix
+    commit id: "Critical fix"
+    checkout main
+    merge hotfix/bug-fix
+    commit id: "Deploy v1.2.1"
+```
+
+**GitLab Flow Strategy (Environment-based)**
+```mermaid
+flowchart LR
+    A[main] --> B[pre-production]
+    B --> C[production]
+    
+    D[feature/api] --> A
+    E[feature/ui] --> A
+    F[hotfix/bug] --> A
+    
+    A --> G[staging deploy]
+    B --> H[pre-prod deploy]
+    C --> I[prod deploy]
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#f3e5f5
+    style E fill:#f3e5f5
+    style F fill:#ffebee
+```
+
+**Trunk-based Development**
+```mermaid
+gitgraph
+    commit id: "Initial"
+    commit id: "Feature A"
+    commit id: "Feature B"
+    
+    branch short-lived-1
+    checkout short-lived-1
+    commit id: "Quick fix"
+    checkout main
+    merge short-lived-1
+    commit id: "Merge fix"
+    
+    commit id: "Feature C"
+    
+    branch short-lived-2
+    checkout short-lived-2
+    commit id: "Small change"
+    checkout main
+    merge short-lived-2
+    commit id: "Deploy v2.0"
+```
+
+**Strategy Comparison Table:**
+
+| Strategy | Best For | Pros | Cons |
+|----------|----------|------|------|
+| **Git Flow** | Large teams, scheduled releases | Clear structure, parallel development | Complex, slower releases |
+| **GitHub Flow** | Continuous deployment, small teams | Simple, fast deployment | Less control over releases |
+| **GitLab Flow** | Multiple environments | Environment-specific branches | More complex than GitHub Flow |
+| **Trunk-based** | High-frequency releases, CI/CD | Fast integration, simple | Requires good testing, discipline |
+
+**Branch Naming Conventions:**
+```bash
+# Feature branches
+feature/user-authentication
+feature/payment-integration
+feature/JIRA-123-shopping-cart
+
+# Bug fix branches
+bugfix/login-error
+bugfix/JIRA-456-checkout-issue
+
+# Hotfix branches
+hotfix/security-vulnerability
+hotfix/critical-payment-bug
+
+# Release branches
+release/v1.2.0
+release/2023-Q4
+
+# Environment branches
+develop
+staging
+production
+```
+
+**Branch Protection Rules:**
+```yaml
+# Example GitHub branch protection
+main:
+  required_status_checks:
+    - ci/tests
+    - security/scan
+  required_reviews: 2
+  dismiss_stale_reviews: true
+  require_code_owner_reviews: true
+  restrict_pushes: true
+  
+develop:
+  required_status_checks:
+    - ci/tests
+  required_reviews: 1
+  allow_force_pushes: false
 ```
 
 #### 2.4 Conflict Resolution
@@ -292,8 +433,85 @@ git add resolved_file.txt  # Stage resolved files
 git commit -m "Resolve merge conflict"
 ```
 
-### 🎯 Practical Exercise
-Create a collaborative project with multiple branches and practice merge conflicts resolution.
+### 🎯 Practical Exercises
+
+**Exercise 1: Git Flow Implementation**
+```bash
+# Initialize Git Flow
+git flow init
+
+# Start a feature
+git flow feature start user-login
+# Work on feature...
+git flow feature finish user-login
+
+# Start a release
+git flow release start 1.0.0
+# Prepare release...
+git flow release finish 1.0.0
+
+# Create hotfix
+git flow hotfix start security-patch
+# Fix issue...
+git flow hotfix finish security-patch
+```
+
+**Exercise 2: Merge Conflict Resolution**
+```bash
+# Create conflict scenario
+git checkout -b feature/conflict-demo
+echo "Version A" > file.txt
+git add file.txt && git commit -m "Version A"
+
+git checkout main
+echo "Version B" > file.txt
+git add file.txt && git commit -m "Version B"
+
+# Attempt merge (will conflict)
+git merge feature/conflict-demo
+
+# Resolve conflict manually
+# Edit file.txt to resolve
+git add file.txt
+git commit -m "Resolve merge conflict"
+```
+
+**Exercise 3: Rebase vs Merge**
+```bash
+# Merge approach (preserves history)
+git checkout main
+git merge feature/new-feature
+
+# Rebase approach (linear history)
+git checkout feature/new-feature
+git rebase main
+git checkout main
+git merge feature/new-feature
+```
+
+**Advanced Git Commands:**
+```bash
+# Interactive rebase to clean history
+git rebase -i HEAD~3
+
+# Cherry-pick specific commits
+git cherry-pick abc123
+
+# Stash work in progress
+git stash push -m "WIP: feature development"
+git stash pop
+
+# Reset strategies
+git reset --soft HEAD~1   # Keep changes staged
+git reset --mixed HEAD~1  # Keep changes unstaged
+git reset --hard HEAD~1   # Discard all changes
+
+# Bisect for bug hunting
+git bisect start
+git bisect bad HEAD
+git bisect good v1.0.0
+# Git will help find the problematic commit
+```
 
 ---
 
@@ -546,18 +764,32 @@ Master continuous integration and deployment pipelines using Jenkins.
 ### 📋 Topics Covered
 
 #### 5.1 CI/CD Pipeline Flow
-```
-┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
-│   Source    │─▶│   Build     │─▶│    Test     │─▶│   Deploy    │
-│   Control   │  │             │  │             │  │             │
-└─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘
-       │                │                │                │
-       ▼                ▼                ▼                ▼
-┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
-│ Git Webhook │  │ Compile     │  │ Unit Tests  │  │ Production  │
-│ Trigger     │  │ Package     │  │ Integration │  │ Staging     │
-│             │  │ Docker      │  │ Security    │  │ Rollback    │
-└─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘
+
+```mermaid
+flowchart LR
+    A[Source Control] --> B[Build]
+    B --> C[Test]
+    C --> D[Deploy]
+    
+    A1[Git Webhook] --> B1[Compile]
+    B1 --> B2[Package]
+    B2 --> B3[Docker Build]
+    
+    C1[Unit Tests] --> C2[Integration Tests]
+    C2 --> C3[Security Scan]
+    
+    D1[Staging] --> D2[Production]
+    D2 --> D3[Rollback]
+    
+    A -.-> A1
+    B -.-> B1
+    C -.-> C1
+    D -.-> D1
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#ffebee
 ```
 
 #### 5.2 Jenkins Architecture

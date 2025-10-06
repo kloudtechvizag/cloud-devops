@@ -80,13 +80,13 @@ A comprehensive guide from beginner to expert level covering all essential DevOp
 
 ```mermaid
 flowchart LR
-    A[Linux] --> B[Git]
-    B --> C[Docker]
-    C --> D[Kubernetes]
-    D --> E[CI/CD]
-    E --> F[Cloud]
-    F --> G[IaC]
-    G --> H[Projects]
+    A["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' width='30'/><br/>Linux"] --> B["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' width='30'/><br/>Git"]
+    B --> C["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' width='30'/><br/>Docker"]
+    C --> D["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg' width='30'/><br/>Kubernetes"]
+    D --> E["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg' width='30'/><br/>CI/CD"]
+    E --> F["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg' width='30'/><br/>AWS Cloud"]
+    F --> G["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg' width='30'/><br/>Terraform"]
+    G --> H["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg' width='30'/><br/>Projects"]
     
     style A fill:#e1f5fe
     style B fill:#f3e5f5
@@ -133,7 +133,7 @@ gantt
 
 ---
 
-## 1️⃣ Linux Fundamentals (Week 1-2)
+## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' width='40'/> Linux Fundamentals (Week 1-2)
 
 ### 📖 Learning Objectives
 Master Linux command line, file systems, and system administration basics.
@@ -215,7 +215,7 @@ Create a simple backup script that archives log files older than 7 days.
 
 ---
 
-## 2️⃣ Git Version Control (Week 3)
+## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' width='40'/> Git Version Control (Week 3)
 
 ### 📖 Learning Objectives
 Master Git workflows, branching strategies, and collaboration techniques.
@@ -261,68 +261,49 @@ git branch -d feature-login # Delete branch
 
 **Git Flow Strategy (Traditional)**
 ```mermaid
-gitgraph
-    commit id: "Initial"
-    branch develop
-    checkout develop
-    commit id: "Dev setup"
+flowchart TD
+    A[main branch] --> B[develop branch]
+    B --> C[feature/login]
+    B --> D[feature/payment]
+    C --> E[Login complete]
+    D --> F[Payment complete]
+    E --> B
+    F --> B
+    B --> G[Release v1.0.0]
+    G --> A
+    A --> H[hotfix/security]
+    H --> I[v1.0.1]
+    I --> A
+    I --> B
     
-    branch feature/login
-    checkout feature/login
-    commit id: "Add login"
-    commit id: "Fix tests"
-    checkout develop
-    merge feature/login
-    
-    branch feature/payment
-    checkout feature/payment
-    commit id: "Payment API"
-    checkout develop
-    merge feature/payment
-    commit id: "Integration"
-    
-    checkout main
-    merge develop
-    commit id: "v1.0.0"
-    
-    branch hotfix/security
-    checkout hotfix/security
-    commit id: "Security fix"
-    checkout main
-    merge hotfix/security
-    commit id: "v1.0.1"
-    checkout develop
-    merge hotfix/security
+    style A fill:#ff6b6b
+    style B fill:#4ecdc4
+    style C fill:#45b7d1
+    style D fill:#45b7d1
+    style H fill:#ffa726
 ```
 
 **GitHub Flow Strategy (Simple)**
 ```mermaid
-gitgraph
-    commit id: "Initial"
-    commit id: "Setup"
+flowchart LR
+    A[main] --> B[feature/auth]
+    B --> C[PR Review]
+    C --> D[Merge to main]
+    D --> E[Deploy v1.1]
     
-    branch feature/user-auth
-    checkout feature/user-auth
-    commit id: "Auth logic"
-    commit id: "Add tests"
-    checkout main
-    merge feature/user-auth
-    commit id: "Deploy v1.1"
+    A --> F[feature/dashboard]
+    F --> G[PR Review]
+    G --> H[Merge to main]
+    H --> I[Deploy v1.2]
     
-    branch feature/dashboard
-    checkout feature/dashboard
-    commit id: "Dashboard UI"
-    commit id: "API integration"
-    checkout main
-    merge feature/dashboard
-    commit id: "Deploy v1.2"
+    A --> J[hotfix/bug]
+    J --> K[Emergency fix]
+    K --> L[Deploy v1.2.1]
     
-    branch hotfix/bug-fix
-    checkout hotfix/bug-fix
-    commit id: "Critical fix"
-    checkout main
-    merge hotfix/bug-fix
-    commit id: "Deploy v1.2.1"
+    style A fill:#28a745
+    style B fill:#007bff
+    style F fill:#007bff
+    style J fill:#dc3545
 ```
 
 **GitLab Flow Strategy (Environment-based)**
@@ -349,26 +330,19 @@ flowchart LR
 
 **Trunk-based Development**
 ```mermaid
-gitgraph
-    commit id: "Initial"
-    commit id: "Feature A"
-    commit id: "Feature B"
+flowchart LR
+    A[main/trunk] --> B[Short-lived branch]
+    B --> C[Quick changes]
+    C --> A
+    A --> D[Direct commits]
+    D --> E[Continuous deployment]
+    A --> F[Feature flags]
+    F --> G[Toggle features]
     
-    branch short-lived-1
-    checkout short-lived-1
-    commit id: "Quick fix"
-    checkout main
-    merge short-lived-1
-    commit id: "Merge fix"
-    
-    commit id: "Feature C"
-    
-    branch short-lived-2
-    checkout short-lived-2
-    commit id: "Small change"
-    checkout main
-    merge short-lived-2
-    commit id: "Deploy v2.0"
+    style A fill:#28a745
+    style B fill:#ffc107
+    style D fill:#17a2b8
+    style F fill:#6f42c1
 ```
 
 **Strategy Comparison Table:**
@@ -457,6 +431,24 @@ git flow hotfix finish security-patch
 ```
 
 **Exercise 2: Merge Conflict Resolution**
+```mermaid
+flowchart TD
+    A[Create feature branch] --> B[Make changes]
+    B --> C[Commit changes]
+    D[Switch to main] --> E[Make different changes]
+    E --> F[Commit changes]
+    F --> G[Attempt merge]
+    G --> H{Conflict?}
+    H -->|Yes| I[Edit conflicted files]
+    I --> J[Add resolved files]
+    J --> K[Commit merge]
+    H -->|No| L[Merge successful]
+    
+    style H fill:#dc3545
+    style I fill:#ffc107
+    style K fill:#28a745
+```
+
 ```bash
 # Create conflict scenario
 git checkout -b feature/conflict-demo
@@ -477,6 +469,23 @@ git commit -m "Resolve merge conflict"
 ```
 
 **Exercise 3: Rebase vs Merge**
+```mermaid
+flowchart LR
+    subgraph "Merge Approach"
+        A1[main] --> B1[feature]
+        B1 --> C1[merge commit]
+        A1 --> C1
+    end
+    
+    subgraph "Rebase Approach"
+        A2[main] --> B2[rebased commits]
+        B2 --> C2[linear history]
+    end
+    
+    style C1 fill:#ffc107
+    style C2 fill:#28a745
+```
+
 ```bash
 # Merge approach (preserves history)
 git checkout main
@@ -515,7 +524,7 @@ git bisect good v1.0.0
 
 ---
 
-## 3️⃣ Docker Containerization (Week 4-5)
+## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' width='40'/> Docker Containerization (Week 4-5)
 
 ### 📖 Learning Objectives
 Master containerization concepts, Docker commands, and multi-container applications.
@@ -627,7 +636,7 @@ Containerize a full-stack application (frontend, backend, database) using Docker
 
 ---
 
-## 4️⃣ Kubernetes Orchestration (Week 6-8)
+## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg' width='40'/> Kubernetes Orchestration (Week 6-8)
 
 ### 📖 Learning Objectives
 Master container orchestration, Kubernetes architecture, and deployment strategies.
@@ -756,7 +765,7 @@ Deploy a microservices application with multiple services, ingress, and persiste
 
 ---
 
-## 5️⃣ CI/CD with Jenkins (Week 9-10)
+## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg' width='40'/> CI/CD with Jenkins (Week 9-10)
 
 ### 📖 Learning Objectives
 Master continuous integration and deployment pipelines using Jenkins.
@@ -900,7 +909,7 @@ Create a complete CI/CD pipeline that builds, tests, and deploys a containerized
 
 ---
 
-## 6️⃣ SonarQube Code Quality (Week 11)
+## <img src='https://www.sonarqube.org/logos/index/sonarqube-logo.svg' width='40'/> SonarQube Code Quality (Week 11)
 
 ### 📖 Learning Objectives
 Implement code quality gates and security scanning in CI/CD pipelines.
@@ -979,7 +988,7 @@ Integrate SonarQube into existing CI/CD pipeline and configure quality gates.
 
 ---
 
-## 7️⃣ Artifactory - Nexus (Week 12)
+## <img src='https://help.sonatype.com/docs/files/12615724/12615725/1/1568044588000/nexus-repo-icon.png' width='40'/> Artifactory - Nexus (Week 12)
 
 ### 📖 Learning Objectives
 Master artifact management, repository configuration, and security policies.
@@ -1063,7 +1072,7 @@ Set up Nexus repository manager and integrate with multiple build tools and CI/C
 
 ---
 
-## 8️⃣ Build Tools (Week 13)
+## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gradle/gradle-plain.svg' width='40'/> Build Tools (Week 13)
 
 ### 📖 Learning Objectives
 Master various build tools and package managers across different technologies.
@@ -1071,20 +1080,25 @@ Master various build tools and package managers across different technologies.
 ### 📋 Topics Covered
 
 #### 8.1 Build Tools Overview
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Build Tools Ecosystem                    │
-├─────────────────────────────────────────────────────────────┤
-│ Java      │ JavaScript │ .NET      │ Python    │ Go        │
-│ ┌───────┐ │ ┌────────┐ │ ┌───────┐ │ ┌───────┐ │ ┌───────┐ │
-│ │ Maven │ │ │  NPM   │ │ │MSBuild│ │ │  pip  │ │ │ go mod│ │
-│ │Gradle │ │ │ Yarn   │ │ │ NuGet │ │ │pipenv │ │ │       │ │
-│ │  Ant  │ │ │Webpack │ │ │       │ │ │poetry │ │ │       │ │
-│ └───────┘ │ └────────┘ │ └───────┘ │ └───────┘ │ └───────┘ │
-└─────────────────────────────────────────────────────────────┘
+
+```mermaid
+flowchart TD
+    subgraph "Build Tools Ecosystem"
+        A["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' width='30'/><br/>Java<br/>Maven, Gradle, Ant"]
+        B["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' width='30'/><br/>JavaScript<br/>NPM, Yarn, Webpack"]
+        C["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg' width='30'/><br/>.NET<br/>MSBuild, NuGet"]
+        D["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' width='30'/><br/>Python<br/>pip, pipenv, poetry"]
+        E["<img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' width='30'/><br/>Go<br/>go mod"]
+    end
+    
+    style A fill:#f8d7da
+    style B fill:#d4edda
+    style C fill:#d1ecf1
+    style D fill:#fff3cd
+    style E fill:#e2e3e5
 ```
 
-#### 8.2 Maven (Java)
+#### 8.2 <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/maven/maven-original.svg' width='30'/> Maven (Java)
 ```xml
 <!-- pom.xml -->
 <project>
@@ -1128,7 +1142,7 @@ mvn install              # Install to local repository
 mvn deploy               # Deploy to remote repository
 ```
 
-#### 8.3 NPM (Node.js)
+#### 8.3 <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg' width='30'/> NPM (Node.js)
 ```json
 {
   "name": "my-app",
@@ -1162,7 +1176,7 @@ npm run lint           # Code linting
 npm publish            # Publish package
 ```
 
-#### 8.4 MSBuild (.NET)
+#### 8.4 <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg' width='30'/> MSBuild (.NET)
 ```xml
 <!-- MyApp.csproj -->
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -1188,7 +1202,7 @@ dotnet publish          # Publish application
 dotnet run              # Run application
 ```
 
-#### 8.5 Python (pip/poetry)
+#### 8.5 <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' width='30'/> Python (pip/poetry)
 ```toml
 # pyproject.toml (Poetry)
 [tool.poetry]
@@ -1224,7 +1238,7 @@ Create build pipelines for applications in different languages using their respe
 
 ---
 
-## 9️⃣ AWS Cloud (Week 14-15)
+## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg' width='40'/> AWS Cloud (Week 14-15)
 
 ### 📖 Learning Objectives
 Master AWS core services, architecture patterns, and cloud-native deployments.
@@ -1350,7 +1364,7 @@ Deploy a scalable web application on AWS using EKS, RDS, and S3 with proper secu
 
 ---
 
-## 🔟 Ansible Configuration Management (Week 16)
+## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg' width='40'/> Ansible Configuration Management (Week 16)
 
 ### 📖 Learning Objectives
 Master infrastructure automation, configuration management, and application deployment with Ansible.
@@ -1488,7 +1502,7 @@ Create Ansible playbooks to automate the deployment of a complete LAMP stack wit
 
 ---
 
-## 1️⃣1️⃣ Terraform Infrastructure as Code (Week 17)
+## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg' width='40'/> Terraform Infrastructure as Code (Week 17)
 
 ### 📖 Learning Objectives
 Master infrastructure provisioning, state management, and multi-cloud deployments with Terraform.
@@ -1665,7 +1679,7 @@ Create Terraform modules to provision a complete AWS infrastructure including VP
 
 ---
 
-## 1️⃣2️⃣ Real-time Projects (Week 18-20)
+## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg' width='40'/> Real-time Projects (Week 18-20)
 
 ### 📖 Learning Objectives
 Apply all learned concepts in comprehensive real-world projects.

@@ -2,17 +2,134 @@
 
 A comprehensive guide from beginner to expert level covering all essential DevOps technologies with practical examples and real-world projects.
 
+## 📋 Table of Contents
+
+- [Course Overview](#-course-overview)
+- [Learning Path](#-learning-path)
+- [Module 1: Linux Fundamentals](#1️⃣-linux-fundamentals-week-1-2)
+  - [Linux Architecture](#11-linux-basics)
+  - [Essential Commands](#12-essential-commands)
+  - [File Permissions](#13-file-permissions)
+  - [Process Management](#14-process-management)
+- [Module 2: Git Version Control](#2️⃣-git-version-control-week-3)
+  - [Git Workflow](#21-git-workflow)
+  - [Basic Commands](#22-basic-commands)
+  - [Branching Strategy](#23-branching-strategy)
+  - [Conflict Resolution](#24-conflict-resolution)
+- [Module 3: Docker Containerization](#3️⃣-docker-containerization-week-4-5)
+  - [Container vs VM](#31-container-vs-virtual-machine)
+  - [Docker Architecture](#32-docker-architecture)
+  - [Essential Commands](#33-essential-docker-commands)
+  - [Dockerfile](#34-dockerfile-example)
+  - [Docker Compose](#35-docker-compose)
+- [Module 4: Kubernetes Orchestration](#4️⃣-kubernetes-orchestration-week-6-8)
+  - [K8s Architecture](#41-kubernetes-architecture)
+  - [Core Concepts](#42-core-concepts)
+  - [kubectl Commands](#43-essential-kubectl-commands)
+  - [YAML Manifests](#44-yaml-manifests)
+  - [Networking](#45-networking-concepts)
+- [Module 5: CI/CD with Jenkins](#5️⃣-cicd-with-jenkins-week-9-10)
+  - [Pipeline Flow](#51-cicd-pipeline-flow)
+  - [Jenkins Architecture](#52-jenkins-architecture)
+  - [Jenkinsfile](#53-jenkinsfile-pipeline)
+  - [Multi-branch Strategy](#54-multi-branch-pipeline-strategy)
+- [Module 6: SonarQube Code Quality](#6️⃣-sonarqube-code-quality-week-11)
+  - [Quality Metrics](#61-code-quality-metrics)
+  - [Quality Gates](#62-quality-gates)
+  - [Jenkins Integration](#63-jenkins-integration)
+  - [Language Configuration](#64-language-specific-configuration)
+- [Module 7: Artifactory - Nexus](#7️⃣-artifactory---nexus-week-12)
+  - [Repository Types](#71-repository-types)
+  - [Maven Integration](#72-maven-integration)
+  - [Docker Registry](#73-docker-registry)
+  - [NPM Registry](#74-npm-registry)
+  - [Security Policies](#75-security-and-cleanup-policies)
+- [Module 8: Build Tools](#8️⃣-build-tools-week-13)
+  - [Build Tools Overview](#81-build-tools-overview)
+  - [Maven (Java)](#82-maven-java)
+  - [NPM (Node.js)](#83-npm-nodejs)
+  - [MSBuild (.NET)](#84-msbuild-net)
+  - [Python Tools](#85-python-pippoetry)
+- [Module 9: AWS Cloud](#9️⃣-aws-cloud-week-14-15)
+  - [Core Services](#91-aws-core-services)
+  - [Architecture Patterns](#92-three-tier-architecture)
+  - [AWS CLI](#93-aws-cli-commands)
+  - [IAM Policies](#94-iam-policies)
+  - [EKS Deployment](#95-eks-deployment)
+- [Module 10: Ansible](#🔟-ansible-configuration-management-week-16)
+  - [Ansible Architecture](#101-ansible-architecture)
+  - [Inventory Management](#102-inventory-file)
+  - [Playbooks](#103-playbook-example)
+  - [Roles Structure](#104-roles-structure)
+  - [Ansible Vault](#105-ansible-vault)
+- [Module 11: Terraform](#1️⃣1️⃣-terraform-infrastructure-as-code-week-17)
+  - [Terraform Workflow](#111-terraform-workflow)
+  - [Configuration](#112-basic-configuration)
+  - [Modules](#113-modules-structure)
+  - [Module Usage](#114-module-usage)
+  - [State Management](#115-state-management)
+- [Module 12: Real-time Projects](#1️⃣2️⃣-real-time-projects-week-18-20)
+  - [E-commerce Platform](#project-1-e-commerce-microservices-platform)
+  - [DevOps PaaS](#project-2-devops-platform-as-a-service)
+  - [Cloud Migration](#project-3-hybrid-cloud-migration)
+- [Assessment & Certification](#-assessment-and-certification)
+- [Additional Resources](#-additional-resources)
+- [Community Support](#-community-and-support)
+
 ## 📚 Course Overview
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    DevOps Learning Path                     │
-├─────────────────────────────────────────────────────────────┤
-│ Linux → Git → Docker → Kubernetes → CI/CD → Cloud → IaC    │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    A[Linux] --> B[Git]
+    B --> C[Docker]
+    C --> D[Kubernetes]
+    D --> E[CI/CD]
+    E --> F[Cloud]
+    F --> G[IaC]
+    G --> H[Projects]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#f1f8e9
+    style G fill:#e3f2fd
+    style H fill:#fff8e1
 ```
 
 **Duration**: 16-20 weeks | **Level**: Beginner to Advanced | **Projects**: 12+ hands-on projects
+
+## 🛤️ Learning Path
+
+```mermaid
+gantt
+    title DevOps Learning Timeline
+    dateFormat  X
+    axisFormat %s
+    
+    section Foundation
+    Linux Fundamentals    :done, linux, 0, 2w
+    Git Version Control   :done, git, after linux, 1w
+    
+    section Containerization
+    Docker Basics         :active, docker, after git, 2w
+    Kubernetes           :k8s, after docker, 3w
+    
+    section Automation
+    Jenkins CI/CD        :jenkins, after k8s, 2w
+    SonarQube           :sonar, after jenkins, 1w
+    Nexus Artifactory   :nexus, after sonar, 1w
+    Build Tools         :build, after nexus, 1w
+    
+    section Cloud & IaC
+    AWS Cloud           :aws, after build, 2w
+    Ansible            :ansible, after aws, 1w
+    Terraform          :terraform, after ansible, 1w
+    
+    section Projects
+    Real-time Projects  :projects, after terraform, 3w
+```
 
 ---
 
@@ -24,14 +141,23 @@ Master Linux command line, file systems, and system administration basics.
 ### 📋 Topics Covered
 
 #### 1.1 Linux Basics
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   User Space    │    │   Applications  │    │   Shell/CLI     │
-├─────────────────┤    ├─────────────────┤    ├─────────────────┤
-│   Kernel Space  │    │   System Calls  │    │   File System   │
-├─────────────────┤    ├─────────────────┤    ├─────────────────┤
-│   Hardware      │    │   Device Driver │    │   Hardware      │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
+
+```mermaid
+flowchart TD
+    A[User Space] --> B[Applications]
+    A --> C[Shell/CLI]
+    D[Kernel Space] --> E[System Calls]
+    D --> F[Device Drivers]
+    G[Hardware Layer] --> H[CPU]
+    G --> I[Memory]
+    G --> J[Storage]
+    
+    A --> D
+    D --> G
+    
+    style A fill:#e3f2fd
+    style D fill:#fff3e0
+    style G fill:#f3e5f5
 ```
 
 #### 1.2 Essential Commands
@@ -97,11 +223,18 @@ Master Git workflows, branching strategies, and collaboration techniques.
 ### 📋 Topics Covered
 
 #### 2.1 Git Workflow
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│ Working Dir │───▶│ Staging Area│───▶│ Local Repo  │───▶│ Remote Repo │
-│   (add)     │    │   (commit)  │    │   (push)    │    │             │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+
+```mermaid
+flowchart LR
+    A[Working Directory] -->|git add| B[Staging Area]
+    B -->|git commit| C[Local Repository]
+    C -->|git push| D[Remote Repository]
+    D -->|git pull| A
+    
+    style A fill:#ffebee
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#e3f2fd
 ```
 
 #### 2.2 Basic Commands
@@ -125,14 +258,29 @@ git branch -d feature-login # Delete branch
 ```
 
 #### 2.3 Branching Strategy
-```
-main     ─────●─────●─────●─────●─────
-              │           │
-develop  ─────●─────●─────●─────●─────
-              │     │     │
-feature  ─────●─────●─────●
-              │           │
-hotfix   ─────────────────●─────●─────
+
+```mermaid
+gitgraph
+    commit id: "Initial"
+    branch develop
+    checkout develop
+    commit id: "Dev-1"
+    branch feature
+    checkout feature
+    commit id: "Feature-1"
+    commit id: "Feature-2"
+    checkout develop
+    merge feature
+    commit id: "Dev-2"
+    checkout main
+    merge develop
+    commit id: "Release-1"
+    branch hotfix
+    checkout hotfix
+    commit id: "Hotfix-1"
+    checkout main
+    merge hotfix
+    commit id: "Release-1.1"
 ```
 
 #### 2.4 Conflict Resolution

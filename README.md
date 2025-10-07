@@ -36,7 +36,7 @@ Transform from a beginner to a **DevOps Expert** with our comprehensive curricul
 | <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" width="40" height="40"> | [**Linux Basics**](#-linux-basics-course) | Command line mastery, system administration, and server management | **2 Weeks** | ![Beginner](https://img.shields.io/badge/-Beginner-green) |
 | <img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="40" height="40"> | [**CI/CD with Jenkins**](#-cicd-with-jenkins) | Build automated pipelines for continuous integration and deployment | **2 Weeks** | ![Intermediate](https://img.shields.io/badge/-Intermediate-yellow) |
 | <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" width="40" height="40"> | [**Docker & Compose**](#-docker--docker-compose) | Containerization, microservices, and multi-container applications | **2 Weeks** | ![Intermediate](https://img.shields.io/badge/-Intermediate-yellow) |
-| <img src="https://kubernetes.io/images/kubernetes-horizontal-color.png" width="60" height="40"> | [**Kubernetes**](#️-kubernetes) | Container orchestration, scaling, and production-grade deployments | **3 Weeks** | ![Advanced](https://img.shields.io/badge/-Advanced-red) |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg" width="40" height="40"> | [**Kubernetes**](#️-kubernetes) | Container orchestration, scaling, and production-grade deployments | **3 Weeks** | ![Advanced](https://img.shields.io/badge/-Advanced-red) |
 | <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" width="60" height="40"> | [**AWS Cloud**](#️-aws-cloud) | Cloud computing, serverless, and scalable infrastructure solutions | **2 Weeks** | ![Intermediate](https://img.shields.io/badge/-Intermediate-yellow) |
 | <img src="https://www.datocms-assets.com/2885/1629941242-logo-terraform-main.svg" width="40" height="40"> | [**Terraform**](#️-terraform) | Infrastructure as Code, automated provisioning, and cloud resources | **1 Week** | ![Advanced](https://img.shields.io/badge/-Advanced-red) |
 | <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ansible_logo.svg" width="40" height="40"> | [**Ansible**](#-ansible) | Configuration management, automation, and infrastructure orchestration | **1 Week** | ![Advanced](https://img.shields.io/badge/-Advanced-red) |
@@ -2216,7 +2216,7 @@ docker-compose scale web=3      # Scale service
 
 # ☸️ Kubernetes
 
-<img src="https://kubernetes.io/images/kubernetes-horizontal-color.png" width="250" alt="Kubernetes Logo">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Kubernetes_logo.svg" width="200" alt="Kubernetes Logo">
 
 *Master Container Orchestration at Enterprise Scale*
 

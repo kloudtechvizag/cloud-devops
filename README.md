@@ -4,6 +4,684 @@ A comprehensive guide from beginner to expert level covering all essential DevOp
 
 ---
 
+# 🌟 Git For Beginners Course
+
+*Notes from the Git for Beginners Course hosted on KodeKloud*
+
+## 📚 Course Overview
+
+```mermaid
+flowchart LR
+    A["🚀<br/>Introduction"] --> B["📁<br/>Local Repos"]
+    B --> C["🌿<br/>Branches"]
+    C --> D["☁️<br/>Remote Repos"]
+    D --> E["🔄<br/>Rebasing"]
+    E --> F["⚡<br/>Advanced Git"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#ffebee
+```
+
+## 📋 Table of Contents
+
+### Git for Beginners Course
+- [1. Git Course Introduction](#1-git-course-introduction)
+- [2. Git Introduction](#2-git-introduction)
+  - [2.1 Git Introduction](#21-git-introduction)
+  - [2.2 Local and Remote Repositories](#22-local-and-remote-repositories)
+  - [2.3 Install Git](#23-install-git)
+  - [2.4 Initialize a Git Repository](#24-initialize-a-git-repository)
+  - [2.5 Git Log](#25-git-log)
+- [3. Git Branches](#3-git-branches)
+  - [3.1 Git Branches](#31-git-branches)
+  - [3.2 Git Merging Branches](#32-git-merging-branches)
+- [4. Initialize Remote Repositories](#4-initialize-remote-repositories)
+  - [4.1 Initialize Remote Repositories](#41-initialize-remote-repositories)
+  - [4.2 Pushing to Remote Repositories](#42-pushing-to-remote-repositories)
+  - [4.3 Cloning Remote Repositories](#43-cloning-remote-repositories)
+  - [4.4 Pull Requests](#44-pull-requests)
+  - [4.5 Fetching and Pulling](#45-fetching-and-pulling)
+  - [4.6 Merge Conflicts](#46-merge-conflicts)
+  - [4.7 Fork](#47-fork)
+- [5. Git Rebasing](#5-git-rebasing)
+  - [5.1 Rebasing](#51-rebasing)
+  - [5.2 Interactive Rebasing](#52-interactive-rebasing)
+  - [5.3 Cherry-Picking](#53-cherry-picking)
+- [6. Resetting and Reverting](#6-resetting-and-reverting)
+  - [6.1 Resetting and Reverting](#61-resetting-and-reverting)
+  - [6.2 Stashing](#62-stashing)
+  - [6.3 Reflog](#63-reflog)
+  - [6.4 Understanding GIT](#64-understanding-git)
+
+---
+
+# 📖 Git for Beginners Course Content
+
+## 1. 🚀 Git Course Introduction
+
+### What is Git?
+
+```mermaid
+flowchart TD
+    A["📝 Version Control"] --> B["🔄 Track Changes"]
+    A --> C["👥 Collaboration"]
+    A --> D["📚 History"]
+    A --> E["🌿 Branching"]
+    
+    style A fill:#4caf50
+    style B fill:#2196f3
+    style C fill:#ff9800
+    style D fill:#9c27b0
+    style E fill:#f44336
+```
+
+**Key Benefits:**
+- 🔄 **Track every change**
+- 👥 **Team collaboration**
+- 🌿 **Parallel development**
+- 📚 **Complete history**
+- 🔒 **Backup & recovery**
+
+---
+
+## 2. 📁 Git Introduction
+
+### 2.1 Git Introduction
+
+```mermaid
+flowchart LR
+    A["💻 Working Directory"] -->|git add| B["📦 Staging Area"]
+    B -->|git commit| C["📚 Repository"]
+    C -->|git push| D["☁️ Remote Repo"]
+    
+    style A fill:#ffebee
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#e3f2fd
+```
+
+### 2.2 Local and Remote Repositories
+
+```mermaid
+flowchart TD
+    subgraph "Local Machine"
+        A["📁 Working Directory"]
+        B["📦 Staging Area"]
+        C["📚 Local Repository"]
+    end
+    
+    subgraph "Remote Server"
+        D["☁️ Remote Repository"]
+        E["🌐 GitHub/GitLab"]
+    end
+    
+    A --> B
+    B --> C
+    C <-->|push/pull| D
+    D --> E
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#f3e5f5
+    style E fill:#ffebee
+```
+
+### 2.3 Install Git
+
+```bash
+# Linux (Ubuntu/Debian)
+sudo apt update
+sudo apt install git
+
+# Linux (CentOS/RHEL)
+sudo yum install git
+
+# macOS
+brew install git
+
+# Windows
+# Download from: https://git-scm.com/download/win
+
+# Verify installation
+git --version
+```
+
+### 2.4 Initialize a Git Repository
+
+```bash
+# Create new repository
+mkdir my-project
+cd my-project
+git init
+
+# Configure user
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# Check status
+git status
+```
+
+### 2.5 Git Log
+
+```bash
+# View commit history
+git log                    # Full log
+git log --oneline         # Compact view
+git log --graph           # Visual graph
+git log --author="John"    # Filter by author
+git log --since="2 weeks ago" # Time filter
+
+# Pretty format
+git log --pretty=format:"%h - %an, %ar : %s"
+```
+
+---
+
+## 3. 🌿 Git Branches
+
+### 3.1 Git Branches
+
+```mermaid
+flowchart LR
+    A["main"] --> B["commit 1"]
+    B --> C["commit 2"]
+    C --> D["commit 3"]
+    
+    C --> E["feature branch"]
+    E --> F["feature commit 1"]
+    F --> G["feature commit 2"]
+    
+    G --> H["merge back"]
+    D --> H
+    
+    style A fill:#4caf50
+    style E fill:#2196f3
+    style H fill:#ff9800
+```
+
+```bash
+# Branch operations
+git branch                 # List branches
+git branch feature-login   # Create branch
+git checkout feature-login # Switch branch
+git checkout -b new-feature # Create and switch
+
+# Modern syntax
+git switch feature-login   # Switch branch
+git switch -c new-feature  # Create and switch
+```
+
+### 3.2 Git Merging Branches
+
+```mermaid
+flowchart TD
+    A["Fast-Forward Merge"] --> B["Linear history"]
+    C["Three-Way Merge"] --> D["Merge commit"]
+    
+    subgraph "Fast-Forward"
+        E["main"] --> F["A"] --> G["B"]
+        H["feature"] --> I["C"] --> J["D"]
+        G --> I
+    end
+    
+    subgraph "Three-Way"
+        K["main"] --> L["A"] --> M["B"] --> N["Merge"]
+        O["feature"] --> P["C"] --> Q["D"] --> N
+    end
+    
+    style B fill:#4caf50
+    style D fill:#ff9800
+```
+
+```bash
+# Merge branches
+git checkout main          # Switch to main
+git merge feature-login    # Merge feature
+git branch -d feature-login # Delete branch
+
+# Merge types
+git merge --ff-only branch    # Fast-forward only
+git merge --no-ff branch      # Force merge commit
+git merge --squash branch     # Squash commits
+```
+
+---
+
+## 4. ☁️ Initialize Remote Repositories
+
+### 4.1 Initialize Remote Repositories
+
+```mermaid
+flowchart LR
+    A["📱 Local Repo"] --> B["🔗 Add Remote"]
+    B --> C["📤 Push Code"]
+    C --> D["☁️ GitHub/GitLab"]
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#f3e5f5
+```
+
+```bash
+# Add remote repository
+git remote add origin https://github.com/user/repo.git
+git remote -v              # View remotes
+
+# Rename/remove remotes
+git remote rename origin upstream
+git remote remove upstream
+```
+
+### 4.2 Pushing to Remote Repositories
+
+```bash
+# Push to remote
+git push origin main       # Push main branch
+git push -u origin main    # Set upstream
+git push                   # Push to upstream
+
+# Push all branches
+git push --all origin
+
+# Push tags
+git push --tags origin
+```
+
+### 4.3 Cloning Remote Repositories
+
+```bash
+# Clone repository
+git clone https://github.com/user/repo.git
+git clone https://github.com/user/repo.git my-folder
+
+# Clone specific branch
+git clone -b develop https://github.com/user/repo.git
+
+# Shallow clone (recent commits only)
+git clone --depth 1 https://github.com/user/repo.git
+```
+
+### 4.4 Pull Requests
+
+```mermaid
+flowchart TD
+    A["🌿 Create Feature Branch"] --> B["💻 Make Changes"]
+    B --> C["📤 Push Branch"]
+    C --> D["🔄 Create PR"]
+    D --> E["👀 Code Review"]
+    E --> F{"Approved?"}
+    F -->|Yes| G["✅ Merge PR"]
+    F -->|No| H["🔧 Fix Issues"]
+    H --> B
+    
+    style A fill:#e3f2fd
+    style D fill:#fff3e0
+    style E fill:#e8f5e8
+    style G fill:#4caf50
+    style H fill:#ff9800
+```
+
+### 4.5 Fetching and Pulling
+
+```bash
+# Fetch changes (no merge)
+git fetch origin           # Fetch all branches
+git fetch origin main      # Fetch specific branch
+
+# Pull changes (fetch + merge)
+git pull origin main       # Pull and merge
+git pull --rebase origin main # Pull and rebase
+
+# Check what's new
+git log HEAD..origin/main  # See new commits
+```
+
+### 4.6 Merge Conflicts
+
+```mermaid
+flowchart TD
+    A["🔄 Merge Attempt"] --> B{"Conflict?"}
+    B -->|No| C["✅ Auto Merge"]
+    B -->|Yes| D["⚠️ Manual Resolution"]
+    D --> E["📝 Edit Files"]
+    E --> F["➕ Add Resolved"]
+    F --> G["💾 Commit Merge"]
+    
+    style A fill:#e3f2fd
+    style C fill:#4caf50
+    style D fill:#ff9800
+    style G fill:#2196f3
+```
+
+```bash
+# Resolve conflicts
+git status                 # See conflicted files
+# Edit files manually
+git add resolved-file.txt  # Mark as resolved
+git commit                 # Complete merge
+
+# Abort merge
+git merge --abort
+```
+
+### 4.7 Fork
+
+```mermaid
+flowchart LR
+    A["🏠 Original Repo"] --> B["🍴 Fork"]
+    B --> C["📥 Clone Fork"]
+    C --> D["🔧 Make Changes"]
+    D --> E["📤 Push to Fork"]
+    E --> F["🔄 Pull Request"]
+    F --> A
+    
+    style A fill:#4caf50
+    style B fill:#2196f3
+    style F fill:#ff9800
+```
+
+---
+
+## 5. 🔄 Git Rebasing
+
+### 5.1 Rebasing
+
+```mermaid
+flowchart TD
+    subgraph "Before Rebase"
+        A1["main: A-B-C"]
+        B1["feature: A-B-D-E"]
+    end
+    
+    subgraph "After Rebase"
+        A2["main: A-B-C"]
+        B2["feature: A-B-C-D'-E'"]
+    end
+    
+    A1 --> A2
+    B1 --> B2
+    
+    style A2 fill:#4caf50
+    style B2 fill:#2196f3
+```
+
+```bash
+# Rebase branch
+git checkout feature-branch
+git rebase main            # Rebase onto main
+
+# Interactive rebase
+git rebase -i HEAD~3       # Last 3 commits
+
+# Rebase options in interactive mode:
+# pick   = use commit
+# reword = edit commit message
+# edit   = edit commit
+# squash = combine with previous
+# drop   = remove commit
+```
+
+### 5.2 Interactive Rebasing
+
+```bash
+# Interactive rebase example
+git rebase -i HEAD~4
+
+# Example interactive rebase file:
+# pick abc123 Add login feature
+# squash def456 Fix login bug
+# reword ghi789 Update documentation
+# drop jkl012 Remove debug code
+```
+
+### 5.3 Cherry-Picking
+
+```mermaid
+flowchart LR
+    A["main: A-B-C"] 
+    B["feature: D-E-F"]
+    C["hotfix: A-B-C-E'"]
+    
+    B -->|cherry-pick E| C
+    
+    style A fill:#4caf50
+    style B fill:#2196f3
+    style C fill:#ff9800
+```
+
+```bash
+# Cherry-pick commits
+git cherry-pick abc123     # Pick single commit
+git cherry-pick abc123..def456 # Pick range
+git cherry-pick -n abc123  # Pick without commit
+
+# Resolve conflicts during cherry-pick
+git cherry-pick --continue # Continue after resolving
+git cherry-pick --abort    # Abort cherry-pick
+```
+
+---
+
+## 6. ⚡ Resetting and Reverting
+
+### 6.1 Resetting and Reverting
+
+```mermaid
+flowchart TD
+    A["💾 Committed Changes"] --> B{"Undo Method"}
+    B -->|"Reset"| C["🔄 Rewrite History"]
+    B -->|"Revert"| D["➕ New Commit"]
+    
+    C --> E["⚠️ Dangerous"]
+    D --> F["✅ Safe"]
+    
+    style C fill:#ff5722
+    style D fill:#4caf50
+    style E fill:#f44336
+    style F fill:#2196f3
+```
+
+```bash
+# Reset (rewrites history)
+git reset --soft HEAD~1    # Keep changes staged
+git reset --mixed HEAD~1   # Keep changes unstaged
+git reset --hard HEAD~1    # Discard all changes
+
+# Revert (creates new commit)
+git revert HEAD            # Revert last commit
+git revert abc123          # Revert specific commit
+git revert HEAD~2..HEAD    # Revert range
+```
+
+### 6.2 Stashing
+
+```mermaid
+flowchart LR
+    A["💻 Working Changes"] -->|stash| B["📦 Stash Stack"]
+    B -->|pop| C["💻 Restored Changes"]
+    
+    D["🌿 Switch Branch"] --> E["🔧 Work on Other"]
+    E --> F["🔄 Switch Back"]
+    F --> C
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+```
+
+```bash
+# Stash operations
+git stash                  # Stash current changes
+git stash push -m "WIP: feature" # Stash with message
+git stash list             # List stashes
+git stash pop              # Apply and remove latest
+git stash apply stash@{1}  # Apply specific stash
+git stash drop stash@{0}   # Delete stash
+git stash clear            # Delete all stashes
+```
+
+### 6.3 Reflog
+
+```bash
+# View reflog (reference log)
+git reflog                 # Show all ref changes
+git reflog --oneline       # Compact view
+git reflog branch-name     # Specific branch
+
+# Recover lost commits
+git checkout abc123        # Go to lost commit
+git branch recovery abc123 # Create branch from it
+```
+
+### 6.4 Understanding GIT
+
+```mermaid
+flowchart TD
+    A["🗂️ Git Objects"] --> B["📄 Blob (File)"]
+    A --> C["🌳 Tree (Directory)"]
+    A --> D["📝 Commit"]
+    A --> E["🏷️ Tag"]
+    
+    F["📍 References"] --> G["🌿 Branches"]
+    F --> H["🏷️ Tags"]
+    F --> I["👤 HEAD"]
+    
+    style A fill:#4caf50
+    style F fill:#2196f3
+```
+
+---
+
+# 🎯 Git Practical Exercises
+
+## Exercise 1: Basic Workflow
+```bash
+# Initialize repository
+mkdir git-practice
+cd git-practice
+git init
+
+# Create and commit files
+echo "# My Project" > README.md
+git add README.md
+git commit -m "Initial commit"
+
+# Create feature branch
+git checkout -b feature/user-auth
+echo "User authentication code" > auth.js
+git add auth.js
+git commit -m "Add user authentication"
+
+# Merge back to main
+git checkout main
+git merge feature/user-auth
+git branch -d feature/user-auth
+```
+
+## Exercise 2: Remote Collaboration
+```bash
+# Add remote and push
+git remote add origin https://github.com/username/repo.git
+git push -u origin main
+
+# Simulate collaboration
+git checkout -b feature/dashboard
+echo "Dashboard component" > dashboard.js
+git add dashboard.js
+git commit -m "Add dashboard component"
+git push origin feature/dashboard
+
+# Create pull request on GitHub/GitLab
+# After review and merge, clean up
+git checkout main
+git pull origin main
+git branch -d feature/dashboard
+```
+
+## Exercise 3: Conflict Resolution
+```bash
+# Create conflicting changes
+git checkout -b branch-a
+echo "Version A" > conflict.txt
+git add conflict.txt
+git commit -m "Version A"
+
+git checkout main
+echo "Version B" > conflict.txt
+git add conflict.txt
+git commit -m "Version B"
+
+# Attempt merge (will conflict)
+git merge branch-a
+
+# Resolve manually
+# Edit conflict.txt to resolve
+git add conflict.txt
+git commit -m "Resolve merge conflict"
+```
+
+## Exercise 4: Advanced Git
+```bash
+# Interactive rebase
+git checkout -b feature/cleanup
+echo "File 1" > file1.txt && git add . && git commit -m "Add file1"
+echo "File 2" > file2.txt && git add . && git commit -m "Add file2"
+echo "Fix typo" >> file1.txt && git add . && git commit -m "Fix typo"
+
+# Squash commits
+git rebase -i HEAD~3
+# Change 'pick' to 'squash' for last two commits
+
+# Cherry-pick specific commit
+git checkout main
+git cherry-pick <commit-hash>
+```
+
+---
+
+# 🏆 Git Mastery Checklist
+
+## Beginner Level ✅
+- [ ] Initialize repositories
+- [ ] Add and commit files
+- [ ] View commit history
+- [ ] Create and switch branches
+- [ ] Basic merging
+- [ ] Clone repositories
+
+## Intermediate Level 🔥
+- [ ] Remote repositories
+- [ ] Push and pull changes
+- [ ] Resolve merge conflicts
+- [ ] Create pull requests
+- [ ] Stash changes
+- [ ] Basic rebasing
+
+## Advanced Level 🚀
+- [ ] Interactive rebasing
+- [ ] Cherry-picking
+- [ ] Reset vs revert
+- [ ] Reflog recovery
+- [ ] Complex merge strategies
+- [ ] Git hooks
+
+## Expert Level 💎
+- [ ] Git internals understanding
+- [ ] Custom workflows
+- [ ] Advanced conflict resolution
+- [ ] Git automation
+- [ ] Performance optimization
+- [ ] Git server administration
+
+---
+
 # 🐧 Linux Basics Course
 
 *Notes from the Linux Basics Course hosted on KodeKloud*

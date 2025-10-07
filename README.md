@@ -29,17 +29,17 @@ flowchart LR
 ## 📋 Table of Contents
 
 ### Git for Beginners Course
-- [1. Git Course Introduction](#1-git-course-introduction)
-- [2. Git Introduction](#2-git-introduction)
+- [1. Git Course Introduction](#1--git-course-introduction)
+- [2. Git Introduction](#2--git-introduction)
   - [2.1 Git Introduction](#21-git-introduction)
   - [2.2 Local and Remote Repositories](#22-local-and-remote-repositories)
   - [2.3 Install Git](#23-install-git)
   - [2.4 Initialize a Git Repository](#24-initialize-a-git-repository)
   - [2.5 Git Log](#25-git-log)
-- [3. Git Branches](#3-git-branches)
+- [3. Git Branches](#3--git-branches)
   - [3.1 Git Branches](#31-git-branches)
   - [3.2 Git Merging Branches](#32-git-merging-branches)
-- [4. Initialize Remote Repositories](#4-initialize-remote-repositories)
+- [4. Initialize Remote Repositories](#4-️-initialize-remote-repositories)
   - [4.1 Initialize Remote Repositories](#41-initialize-remote-repositories)
   - [4.2 Pushing to Remote Repositories](#42-pushing-to-remote-repositories)
   - [4.3 Cloning Remote Repositories](#43-cloning-remote-repositories)
@@ -47,11 +47,11 @@ flowchart LR
   - [4.5 Fetching and Pulling](#45-fetching-and-pulling)
   - [4.6 Merge Conflicts](#46-merge-conflicts)
   - [4.7 Fork](#47-fork)
-- [5. Git Rebasing](#5-git-rebasing)
+- [5. Git Rebasing](#5--git-rebasing)
   - [5.1 Rebasing](#51-rebasing)
   - [5.2 Interactive Rebasing](#52-interactive-rebasing)
   - [5.3 Cherry-Picking](#53-cherry-picking)
-- [6. Resetting and Reverting](#6-resetting-and-reverting)
+- [6. Resetting and Reverting](#6-️-resetting-and-reverting)
   - [6.1 Resetting and Reverting](#61-resetting-and-reverting)
   - [6.2 Stashing](#62-stashing)
   - [6.3 Reflog](#63-reflog)
@@ -1701,6 +1701,1635 @@ iotop                      # I/O monitoring
 nload                      # Network monitoring
 vmstat 1                   # Virtual memory stats
 sar -u 1 10               # CPU utilization
+```
+
+---
+
+# 🔧 CI/CD with Jenkins
+
+*Continuous Integration and Continuous Deployment Pipeline*
+
+## 📚 Course Overview
+
+```mermaid
+flowchart LR
+    A["🔧<br/>Jenkins Setup"] --> B["📋<br/>Pipeline Basics"]
+    B --> C["🔄<br/>CI/CD Flow"]
+    C --> D["🐳<br/>Docker Integration"]
+    D --> E["☸️<br/>K8s Deployment"]
+    E --> F["📊<br/>Monitoring"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#ffebee
+```
+
+## 📋 Table of Contents
+
+### CI/CD with Jenkins Course
+- [1. Jenkins Introduction](#1-jenkins-introduction)
+- [2. Pipeline Creation](#2-pipeline-creation)
+- [3. Multi-branch Pipelines](#3-multi-branch-pipelines)
+- [4. Docker Integration](#4-docker-integration)
+- [5. Kubernetes Deployment](#5-kubernetes-deployment)
+- [6. Monitoring and Notifications](#6-monitoring-and-notifications)
+
+---
+
+# 📖 CI/CD with Jenkins Course Content
+
+## 1. 🔧 Jenkins Introduction
+
+### What is Jenkins?
+
+```mermaid
+flowchart TD
+    A["📝 Source Code"] --> B["🔧 Jenkins"]
+    B --> C["🏗️ Build"]
+    B --> D["🧪 Test"]
+    B --> E["📦 Package"]
+    B --> F["🚀 Deploy"]
+    
+    style A fill:#e3f2fd
+    style B fill:#4caf50
+    style C fill:#ff9800
+    style D fill:#2196f3
+    style E fill:#9c27b0
+    style F fill:#f44336
+```
+
+**Key Features:**
+- 🔄 **Continuous Integration**
+- 🚀 **Automated Deployment**
+- 🔌 **Plugin Ecosystem**
+- 📊 **Build Monitoring**
+
+## 2. 📋 Pipeline Creation
+
+### Basic Jenkinsfile
+```groovy
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                sh 'npm install'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh 'npm test'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                sh 'npm run deploy'
+            }
+        }
+    }
+}
+```
+
+## 3. 🌿 Multi-branch Pipelines
+
+```mermaid
+flowchart LR
+    A["main"] --> B["🚀 Production"]
+    C["develop"] --> D["🧪 Staging"]
+    E["feature/*"] --> F["🔧 Testing"]
+    
+    style A fill:#28a745
+    style C fill:#17a2b8
+    style E fill:#ffc107
+```
+
+## 4. 🐳 Docker Integration
+
+```groovy
+stage('Docker Build') {
+    steps {
+        script {
+            def image = docker.build("myapp:${BUILD_NUMBER}")
+            docker.withRegistry('https://registry.hub.docker.com') {
+                image.push()
+            }
+        }
+    }
+}
+```
+
+## 5. ☸️ Kubernetes Deployment
+
+```groovy
+stage('Deploy to K8s') {
+    steps {
+        sh 'kubectl apply -f k8s-manifests/'
+        sh "kubectl set image deployment/myapp myapp=myapp:${BUILD_NUMBER}"
+    }
+}
+```
+
+## 6. 📊 Monitoring and Notifications
+
+```groovy
+post {
+    success {
+        emailext subject: 'Build Success', body: 'Deployment completed'
+    }
+    failure {
+        slackSend channel: '#alerts', message: 'Build failed!'
+    }
+}
+```
+
+---
+
+# 🐳 Docker & Docker Compose
+
+*Containerization and Multi-Container Applications*
+
+## 📚 Course Overview
+
+```mermaid
+flowchart LR
+    A["🐳<br/>Docker Basics"] --> B["📦<br/>Images"]
+    B --> C["🏃<br/>Containers"]
+    C --> D["🔗<br/>Networks"]
+    D --> E["💾<br/>Volumes"]
+    E --> F["🎼<br/>Compose"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#ffebee
+```
+
+## 📋 Table of Contents
+
+### Docker & Docker Compose Course
+- [1. Docker Fundamentals](#1-docker-fundamentals)
+- [2. Dockerfile Creation](#2-dockerfile-creation)
+- [3. Container Management](#3-container-management)
+- [4. Docker Networks](#4-docker-networks)
+- [5. Docker Volumes](#5-docker-volumes)
+- [6. Docker Compose](#6-docker-compose)
+
+---
+
+# 📖 Docker & Docker Compose Course Content
+
+## 1. 🐳 Docker Fundamentals
+
+### Container vs VM
+
+```mermaid
+flowchart TD
+    subgraph "Containers"
+        A1["App1"] 
+        A2["App2"]
+        A3["App3"]
+        CR["Container Runtime"]
+        HOS1["Host OS"]
+        HW1["Hardware"]
+        
+        A1 --> CR
+        A2 --> CR
+        A3 --> CR
+        CR --> HOS1
+        HOS1 --> HW1
+    end
+    
+    subgraph "Virtual Machines"
+        B1["App1"]
+        B2["App2"]
+        OS1["Guest OS1"]
+        OS2["Guest OS2"]
+        HV["Hypervisor"]
+        HOS2["Host OS"]
+        HW2["Hardware"]
+        
+        B1 --> OS1
+        B2 --> OS2
+        OS1 --> HV
+        OS2 --> HV
+        HV --> HOS2
+        HOS2 --> HW2
+    end
+    
+    style A1 fill:#e8f5e8
+    style A2 fill:#e8f5e8
+    style A3 fill:#e8f5e8
+    style B1 fill:#ffebee
+    style B2 fill:#ffebee
+```
+
+### Basic Docker Commands
+```bash
+# Image management
+docker images                    # List images
+docker pull nginx:latest         # Pull image
+docker build -t myapp:v1 .      # Build image
+docker rmi image_id              # Remove image
+
+# Container lifecycle
+docker run -d -p 80:80 nginx    # Run container
+docker ps                       # List running containers
+docker stop container_id        # Stop container
+docker rm container_id          # Remove container
+```
+
+## 2. 📦 Dockerfile Creation
+
+```dockerfile
+# Multi-stage Dockerfile
+FROM node:16-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+## 3. 🏃 Container Management
+
+```bash
+# Container interaction
+docker exec -it container_id bash # Access container
+docker logs container_id         # View logs
+docker cp file.txt container_id:/app/ # Copy files
+docker stats                     # Resource usage
+```
+
+## 4. 🔗 Docker Networks
+
+```bash
+# Network management
+docker network create mynetwork  # Create network
+docker network ls               # List networks
+docker run --network mynetwork nginx # Run with network
+```
+
+## 5. 💾 Docker Volumes
+
+```bash
+# Volume management
+docker volume create myvolume    # Create volume
+docker run -v myvolume:/data nginx # Mount volume
+docker volume ls                # List volumes
+```
+
+## 6. 🎼 Docker Compose
+
+```yaml
+# docker-compose.yml
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DB_HOST=db
+      - REDIS_HOST=redis
+  
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=myapp
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
+```
+
+```bash
+# Docker Compose commands
+docker-compose up -d            # Start services
+docker-compose down             # Stop services
+docker-compose logs web         # View service logs
+docker-compose scale web=3      # Scale service
+```
+
+---
+
+# ☸️ Kubernetes
+
+*Container Orchestration Platform*
+
+## 📚 Course Overview
+
+```mermaid
+flowchart LR
+    A["☸️<br/>K8s Basics"] --> B["🏗️<br/>Architecture"]
+    B --> C["📦<br/>Pods"]
+    C --> D["🚀<br/>Deployments"]
+    D --> E["🌐<br/>Services"]
+    E --> F["📊<br/>Monitoring"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#ffebee
+```
+
+## 📋 Table of Contents
+
+### Kubernetes Course
+- [1. Kubernetes Architecture](#1-kubernetes-architecture)
+- [2. Pods and Containers](#2-pods-and-containers)
+- [3. Deployments and ReplicaSets](#3-deployments-and-replicasets)
+- [4. Services and Networking](#4-services-and-networking)
+- [5. ConfigMaps and Secrets](#5-configmaps-and-secrets)
+- [6. Persistent Volumes](#6-persistent-volumes)
+
+---
+
+# 📖 Kubernetes Course Content
+
+## 1. ☸️ Kubernetes Architecture
+
+```mermaid
+flowchart TD
+    subgraph "Master Node"
+        A["API Server"]
+        B["etcd"]
+        C["Scheduler"]
+        D["Controller Manager"]
+    end
+    
+    subgraph "Worker Node 1"
+        E["kubelet"]
+        F["kube-proxy"]
+        G["Container Runtime"]
+        subgraph "Pods"
+            H["Container 1"]
+            I["Container 2"]
+        end
+    end
+    
+    A --> E
+    E --> H
+    E --> I
+    
+    style A fill:#ff6b6b
+    style B fill:#4ecdc4
+    style C fill:#45b7d1
+    style D fill:#96ceb4
+```
+
+## 2. 📦 Pods and Containers
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.21
+    ports:
+    - containerPort: 80
+```
+
+```bash
+# Pod management
+kubectl get pods                # List pods
+kubectl describe pod nginx-pod  # Pod details
+kubectl logs nginx-pod          # Pod logs
+kubectl exec -it nginx-pod bash # Access pod
+```
+
+## 3. 🚀 Deployments and ReplicaSets
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+```
+
+```bash
+# Deployment management
+kubectl create deployment nginx --image=nginx
+kubectl scale deployment nginx --replicas=5
+kubectl rollout status deployment/nginx
+kubectl rollout undo deployment/nginx
+```
+
+## 4. 🌐 Services and Networking
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    targetPort: 80
+  type: LoadBalancer
+```
+
+## 5. 🔐 ConfigMaps and Secrets
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  database_url: "postgresql://localhost:5432/mydb"
+  debug: "true"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secret
+type: Opaque
+data:
+  password: cGFzc3dvcmQxMjM=  # base64 encoded
+```
+
+## 6. 💾 Persistent Volumes
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+```
+
+---
+
+# ☁️ AWS Cloud
+
+*Amazon Web Services Cloud Platform*
+
+## 📚 Course Overview
+
+```mermaid
+flowchart LR
+    A["☁️<br/>AWS Basics"] --> B["🖥️<br/>EC2"]
+    B --> C["💾<br/>S3"]
+    C --> D["🗄️<br/>RDS"]
+    D --> E["☸️<br/>EKS"]
+    E --> F["🔧<br/>CloudFormation"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#ffebee
+```
+
+## 📋 Table of Contents
+
+### AWS Cloud Course
+- [1. AWS Fundamentals](#1-aws-fundamentals)
+- [2. EC2 and VPC](#2-ec2-and-vpc)
+- [3. S3 and Storage](#3-s3-and-storage)
+- [4. RDS and Databases](#4-rds-and-databases)
+- [5. EKS and Containers](#5-eks-and-containers)
+- [6. CloudFormation](#6-cloudformation)
+
+---
+
+# 📖 AWS Cloud Course Content
+
+## 1. ☁️ AWS Fundamentals
+
+### AWS Global Infrastructure
+
+```mermaid
+flowchart TD
+    A["🌍 AWS Regions"] --> B["🏢 Availability Zones"]
+    B --> C["🏭 Data Centers"]
+    
+    D["🌐 Edge Locations"] --> E["📡 CloudFront"]
+    
+    style A fill:#ff6b6b
+    style B fill:#4ecdc4
+    style C fill:#45b7d1
+    style D fill:#96ceb4
+    style E fill:#ffeaa7
+```
+
+### Core Services
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    AWS Service Categories                   │
+├─────────────────────────────────────────────────────────────┤
+│ Compute      │ Storage      │ Database     │ Networking    │
+│ ┌─────────┐  │ ┌─────────┐  │ ┌─────────┐  │ ┌─────────┐   │
+│ │   EC2   │  │ │   S3    │  │ │   RDS   │  │ │   VPC   │   │
+│ │ Lambda  │  │ │   EBS   │  │ │DynamoDB │  │ │   ELB   │   │
+│ │   ECS   │  │ │   EFS   │  │ │ElastiCache│ │ │Route 53 │   │
+│ │   EKS   │  │ │Glacier  │  │ │Redshift │  │ │CloudFront│   │
+│ └─────────┘  │ └─────────┘  │ └─────────┘  │ └─────────┘   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## 2. 🖥️ EC2 and VPC
+
+### VPC Architecture
+```mermaid
+flowchart TD
+    A["Internet Gateway"] --> B["Public Subnet"]
+    B --> C["Web Servers"]
+    
+    C --> D["Private Subnet"]
+    D --> E["App Servers"]
+    
+    E --> F["Database Subnet"]
+    F --> G["RDS Instances"]
+    
+    style A fill:#ff6b6b
+    style B fill:#4ecdc4
+    style D fill:#45b7d1
+    style F fill:#96ceb4
+```
+
+### EC2 Instance Types
+```bash
+# Launch EC2 instance
+aws ec2 run-instances \
+    --image-id ami-12345678 \
+    --instance-type t3.micro \
+    --key-name my-key \
+    --security-group-ids sg-12345678 \
+    --subnet-id subnet-12345678
+
+# List instances
+aws ec2 describe-instances
+
+# Stop instance
+aws ec2 stop-instances --instance-ids i-1234567890abcdef0
+```
+
+## 3. 💾 S3 and Storage
+
+```bash
+# S3 operations
+aws s3 mb s3://my-bucket-name       # Create bucket
+aws s3 cp file.txt s3://my-bucket/  # Upload file
+aws s3 sync ./folder s3://my-bucket/folder/  # Sync folder
+aws s3 ls s3://my-bucket/           # List objects
+```
+
+### S3 Bucket Policy
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::my-bucket/*"
+    }
+  ]
+}
+```
+
+## 4. 🗄️ RDS and Databases
+
+```bash
+# Create RDS instance
+aws rds create-db-instance \
+    --db-instance-identifier mydb \
+    --db-instance-class db.t3.micro \
+    --engine postgres \
+    --master-username admin \
+    --master-user-password mypassword \
+    --allocated-storage 20
+```
+
+## 5. ☸️ EKS and Containers
+
+```bash
+# Create EKS cluster
+aws eks create-cluster \
+    --name my-cluster \
+    --version 1.21 \
+    --role-arn arn:aws:iam::123456789012:role/eks-service-role
+
+# Update kubeconfig
+aws eks update-kubeconfig --name my-cluster
+```
+
+## 6. 🔧 CloudFormation
+
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Simple VPC with public subnet'
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      Tags:
+        - Key: Name
+          Value: MyVPC
+  
+  PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: !Select [0, !GetAZs '']
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: PublicSubnet
+
+Outputs:
+  VPCId:
+    Description: VPC ID
+    Value: !Ref VPC
+    Export:
+      Name: !Sub ${AWS::StackName}-VPC-ID
+```
+
+---
+
+# 🏗️ Terraform
+
+*Infrastructure as Code*
+
+## 📚 Course Overview
+
+```mermaid
+flowchart LR
+    A["🏗️<br/>Terraform Basics"] --> B["📝<br/>HCL Syntax"]
+    B --> C["🔧<br/>Providers"]
+    C --> D["📦<br/>Modules"]
+    D --> E["🗃️<br/>State"]
+    E --> F["🚀<br/>Deployment"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#ffebee
+```
+
+## 📋 Table of Contents
+
+### Terraform Course
+- [1. Terraform Fundamentals](#1-terraform-fundamentals)
+- [2. HCL Configuration](#2-hcl-configuration)
+- [3. Providers and Resources](#3-providers-and-resources)
+- [4. Modules and Reusability](#4-modules-and-reusability)
+- [5. State Management](#5-state-management)
+- [6. Advanced Patterns](#6-advanced-patterns)
+
+---
+
+# 📖 Terraform Course Content
+
+## 1. 🏗️ Terraform Fundamentals
+
+### Terraform Workflow
+
+```mermaid
+flowchart LR
+    A["Write .tf files"] --> B["terraform plan"]
+    B --> C["terraform apply"]
+    C --> D["terraform refresh"]
+    D --> E["terraform destroy"]
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#ffebee
+    style E fill:#f3e5f5
+```
+
+### Basic Commands
+```bash
+# Initialize Terraform
+terraform init
+
+# Plan changes
+terraform plan
+
+# Apply changes
+terraform apply
+
+# Show current state
+terraform show
+
+# Destroy infrastructure
+terraform destroy
+```
+
+## 2. 📝 HCL Configuration
+
+```hcl
+# main.tf
+terraform {
+  required_version = ">= 1.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = var.aws_region
+}
+
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+  default     = "us-west-2"
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-12345678"
+  instance_type = "t3.micro"
+  
+  tags = {
+    Name = "WebServer"
+  }
+}
+
+output "instance_ip" {
+  value = aws_instance.web.public_ip
+}
+```
+
+## 3. 🔧 Providers and Resources
+
+```hcl
+# VPC Resource
+resource "aws_vpc" "main" {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+  
+  tags = {
+    Name = "main-vpc"
+  }
+}
+
+# Subnet Resource
+resource "aws_subnet" "public" {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "us-west-2a"
+  map_public_ip_on_launch = true
+  
+  tags = {
+    Name = "public-subnet"
+  }
+}
+```
+
+## 4. 📦 Modules and Reusability
+
+```
+modules/
+├── vpc/
+│   ├── main.tf
+│   ├── variables.tf
+│   └── outputs.tf
+└── ec2/
+    ├── main.tf
+    ├── variables.tf
+    └── outputs.tf
+```
+
+```hcl
+# Using modules
+module "vpc" {
+  source = "./modules/vpc"
+  
+  cidr_block = "10.0.0.0/16"
+  name       = "production"
+}
+
+module "web_servers" {
+  source = "./modules/ec2"
+  
+  vpc_id        = module.vpc.vpc_id
+  subnet_id     = module.vpc.public_subnet_id
+  instance_type = "t3.micro"
+  count         = 2
+}
+```
+
+## 5. 🗃️ State Management
+
+```hcl
+# Remote state backend
+terraform {
+  backend "s3" {
+    bucket = "my-terraform-state"
+    key    = "infrastructure/terraform.tfstate"
+    region = "us-west-2"
+  }
+}
+```
+
+```bash
+# State commands
+terraform state list                    # List resources
+terraform state show aws_instance.web   # Show resource
+terraform import aws_instance.web i-12345 # Import resource
+```
+
+## 6. 🚀 Advanced Patterns
+
+### Workspaces
+```bash
+# Workspace management
+terraform workspace new production
+terraform workspace select production
+terraform workspace list
+```
+
+### Conditional Resources
+```hcl
+resource "aws_instance" "web" {
+  count = var.create_instance ? 1 : 0
+  
+  ami           = "ami-12345678"
+  instance_type = "t3.micro"
+}
+```
+
+---
+
+# 🤖 Ansible
+
+*Configuration Management and Automation*
+
+## 📚 Course Overview
+
+```mermaid
+flowchart LR
+    A["🤖<br/>Ansible Basics"] --> B["📋<br/>Inventory"]
+    B --> C["📖<br/>Playbooks"]
+    C --> D["🎭<br/>Roles"]
+    D --> E["🔐<br/>Vault"]
+    E --> F["🚀<br/>Automation"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#ffebee
+```
+
+## 📋 Table of Contents
+
+### Ansible Course
+- [1. Ansible Architecture](#1-ansible-architecture)
+- [2. Inventory Management](#2-inventory-management)
+- [3. Playbooks and Tasks](#3-playbooks-and-tasks)
+- [4. Roles and Collections](#4-roles-and-collections)
+- [5. Ansible Vault](#5-ansible-vault)
+- [6. Advanced Automation](#6-advanced-automation)
+
+---
+
+# 📖 Ansible Course Content
+
+## 1. 🤖 Ansible Architecture
+
+```mermaid
+flowchart TD
+    subgraph "Control Node"
+        A["Playbooks"]
+        B["Inventory"]
+        C["Modules"]
+    end
+    
+    subgraph "Managed Nodes"
+        D["Web Servers"]
+        E["Database Servers"]
+        F["Load Balancers"]
+    end
+    
+    A -->|SSH| D
+    B -->|SSH| E
+    C -->|SSH| F
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#ffebee
+    style E fill:#f3e5f5
+    style F fill:#e1f5fe
+```
+
+## 2. 📋 Inventory Management
+
+```ini
+# inventory/hosts
+[webservers]
+web1 ansible_host=192.168.1.10
+web2 ansible_host=192.168.1.11
+
+[databases]
+db1 ansible_host=192.168.1.20
+db2 ansible_host=192.168.1.21
+
+[production:children]
+webservers
+databases
+
+[production:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/production.pem
+```
+
+## 3. 📖 Playbooks and Tasks
+
+```yaml
+# site.yml
+---
+- name: Configure Web Servers
+  hosts: webservers
+  become: yes
+  
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+    
+    - name: Start nginx service
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+    
+    - name: Deploy website
+      template:
+        src: index.html.j2
+        dest: /var/www/html/index.html
+      notify: restart nginx
+  
+  handlers:
+    - name: restart nginx
+      systemd:
+        name: nginx
+        state: restarted
+```
+
+## 4. 🎭 Roles and Collections
+
+```
+roles/
+├── webserver/
+│   ├── tasks/
+│   │   └── main.yml
+│   ├── handlers/
+│   │   └── main.yml
+│   ├── templates/
+│   │   └── nginx.conf.j2
+│   ├── files/
+│   │   └── index.html
+│   ├── vars/
+│   │   └── main.yml
+│   └── defaults/
+│       └── main.yml
+```
+
+```yaml
+# Using roles
+- name: Deploy web application
+  hosts: webservers
+  roles:
+    - webserver
+    - { role: database, when: inventory_hostname in groups['databases'] }
+```
+
+## 5. 🔐 Ansible Vault
+
+```bash
+# Create encrypted file
+ansible-vault create secrets.yml
+
+# Edit encrypted file
+ansible-vault edit secrets.yml
+
+# Run playbook with vault
+ansible-playbook site.yml --ask-vault-pass
+```
+
+```yaml
+# secrets.yml (encrypted)
+$ANSIBLE_VAULT;1.1;AES256
+66386439653...encrypted_content...
+```
+
+## 6. 🚀 Advanced Automation
+
+### Dynamic Inventory
+```bash
+# AWS dynamic inventory
+ansible-playbook -i aws_ec2.yml site.yml
+```
+
+### Ansible Tower/AWX
+```yaml
+# Job template configuration
+name: Deploy Web Application
+playbook: site.yml
+inventory: Production
+credentials: SSH Key
+variables:
+  app_version: "1.2.3"
+  environment: "production"
+```
+
+---
+
+# 🐍 Python/Bash Scripting
+
+*Automation and Scripting Languages*
+
+## 📚 Course Overview
+
+```mermaid
+flowchart LR
+    A["🐍<br/>Python Basics"] --> B["📜<br/>Bash Scripting"]
+    B --> C["🔧<br/>Automation"]
+    C --> D["📊<br/>Data Processing"]
+    D --> E["🌐<br/>APIs"]
+    E --> F["🚀<br/>DevOps Tools"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#ffebee
+```
+
+## 📋 Table of Contents
+
+### Python/Bash Scripting Course
+- [1. Python Fundamentals](#1-python-fundamentals)
+- [2. Bash Scripting](#2-bash-scripting)
+- [3. Automation Scripts](#3-automation-scripts)
+- [4. API Integration](#4-api-integration)
+- [5. DevOps Utilities](#5-devops-utilities)
+- [6. Advanced Scripting](#6-advanced-scripting)
+
+---
+
+# 📖 Python/Bash Scripting Course Content
+
+## 1. 🐍 Python Fundamentals
+
+### Basic Python for DevOps
+```python
+#!/usr/bin/env python3
+import os
+import sys
+import subprocess
+import json
+import requests
+
+# System information
+def get_system_info():
+    info = {
+        'hostname': os.uname().nodename,
+        'platform': sys.platform,
+        'python_version': sys.version,
+        'current_dir': os.getcwd()
+    }
+    return info
+
+# Run shell commands
+def run_command(command):
+    try:
+        result = subprocess.run(
+            command, 
+            shell=True, 
+            capture_output=True, 
+            text=True
+        )
+        return result.stdout.strip()
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
+# Example usage
+if __name__ == "__main__":
+    print(json.dumps(get_system_info(), indent=2))
+    disk_usage = run_command("df -h")
+    print(disk_usage)
+```
+
+### File Operations
+```python
+import os
+import shutil
+from pathlib import Path
+
+# File management
+def backup_files(source_dir, backup_dir):
+    source = Path(source_dir)
+    backup = Path(backup_dir)
+    
+    if not source.exists():
+        print(f"Source directory {source} does not exist")
+        return
+    
+    backup.mkdir(parents=True, exist_ok=True)
+    
+    for file_path in source.rglob('*'):
+        if file_path.is_file():
+            relative_path = file_path.relative_to(source)
+            backup_path = backup / relative_path
+            backup_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(file_path, backup_path)
+            print(f"Backed up: {relative_path}")
+
+# Log analysis
+def analyze_logs(log_file):
+    error_count = 0
+    warning_count = 0
+    
+    with open(log_file, 'r') as f:
+        for line in f:
+            if 'ERROR' in line:
+                error_count += 1
+            elif 'WARNING' in line:
+                warning_count += 1
+    
+    return {'errors': error_count, 'warnings': warning_count}
+```
+
+## 2. 📜 Bash Scripting
+
+### System Administration Scripts
+```bash
+#!/bin/bash
+
+# System monitoring script
+monitor_system() {
+    echo "=== System Monitor ==="
+    echo "Date: $(date)"
+    echo "Uptime: $(uptime -p)"
+    echo "Load Average: $(uptime | awk -F'load average:' '{print $2}')"
+    echo "Memory Usage:"
+    free -h | grep -E '^Mem|^Swap'
+    echo "Disk Usage:"
+    df -h | grep -E '^/dev/'
+    echo "Top 5 CPU processes:"
+    ps aux --sort=-%cpu | head -6
+}
+
+# Service management
+manage_service() {
+    local service=$1
+    local action=$2
+    
+    case $action in
+        "start")
+            sudo systemctl start $service
+            echo "Started $service"
+            ;;
+        "stop")
+            sudo systemctl stop $service
+            echo "Stopped $service"
+            ;;
+        "status")
+            systemctl status $service
+            ;;
+        *)
+            echo "Usage: manage_service <service> <start|stop|status>"
+            ;;
+    esac
+}
+
+# Backup function
+backup_directory() {
+    local source_dir=$1
+    local backup_dir=$2
+    local timestamp=$(date +%Y%m%d_%H%M%S)
+    
+    if [ ! -d "$source_dir" ]; then
+        echo "Error: Source directory $source_dir does not exist"
+        return 1
+    fi
+    
+    mkdir -p "$backup_dir"
+    tar -czf "$backup_dir/backup_$timestamp.tar.gz" -C "$(dirname $source_dir)" "$(basename $source_dir)"
+    echo "Backup created: $backup_dir/backup_$timestamp.tar.gz"
+}
+
+# Main execution
+case "$1" in
+    "monitor")
+        monitor_system
+        ;;
+    "service")
+        manage_service "$2" "$3"
+        ;;
+    "backup")
+        backup_directory "$2" "$3"
+        ;;
+    *)
+        echo "Usage: $0 <monitor|service|backup> [args]"
+        ;;
+esac
+```
+
+### Log Processing
+```bash
+#!/bin/bash
+
+# Log analysis script
+analyze_logs() {
+    local log_file=$1
+    local output_file="log_analysis_$(date +%Y%m%d).txt"
+    
+    echo "Log Analysis Report - $(date)" > $output_file
+    echo "================================" >> $output_file
+    echo "" >> $output_file
+    
+    # Count different log levels
+    echo "Log Level Summary:" >> $output_file
+    echo "Errors: $(grep -c 'ERROR' $log_file)" >> $output_file
+    echo "Warnings: $(grep -c 'WARNING' $log_file)" >> $output_file
+    echo "Info: $(grep -c 'INFO' $log_file)" >> $output_file
+    echo "" >> $output_file
+    
+    # Top error messages
+    echo "Top 10 Error Messages:" >> $output_file
+    grep 'ERROR' $log_file | awk '{print $NF}' | sort | uniq -c | sort -nr | head -10 >> $output_file
+    echo "" >> $output_file
+    
+    # Hourly activity
+    echo "Hourly Activity:" >> $output_file
+    awk '{print $4}' $log_file | cut -d: -f2 | sort | uniq -c >> $output_file
+    
+    echo "Analysis complete. Report saved to $output_file"
+}
+```
+
+## 3. 🔧 Automation Scripts
+
+### Deployment Automation
+```python
+#!/usr/bin/env python3
+import subprocess
+import yaml
+import os
+from datetime import datetime
+
+class DeploymentManager:
+    def __init__(self, config_file):
+        with open(config_file, 'r') as f:
+            self.config = yaml.safe_load(f)
+    
+    def deploy_application(self, environment):
+        env_config = self.config['environments'][environment]
+        
+        print(f"Deploying to {environment}...")
+        
+        # Build application
+        self.run_command("docker build -t myapp:latest .")
+        
+        # Tag for registry
+        registry = env_config['registry']
+        tag = f"{registry}/myapp:{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+        self.run_command(f"docker tag myapp:latest {tag}")
+        
+        # Push to registry
+        self.run_command(f"docker push {tag}")
+        
+        # Deploy to Kubernetes
+        self.run_command(f"kubectl set image deployment/myapp myapp={tag}")
+        
+        # Wait for rollout
+        self.run_command("kubectl rollout status deployment/myapp")
+        
+        print(f"Deployment to {environment} completed successfully!")
+    
+    def run_command(self, command):
+        print(f"Running: {command}")
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"Error: {result.stderr}")
+            raise Exception(f"Command failed: {command}")
+        return result.stdout
+
+# Usage
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) != 2:
+        print("Usage: deploy.py <environment>")
+        sys.exit(1)
+    
+    deployer = DeploymentManager('deploy-config.yml')
+    deployer.deploy_application(sys.argv[1])
+```
+
+## 4. 🌐 API Integration
+
+### AWS API Integration
+```python
+import boto3
+import json
+from datetime import datetime, timedelta
+
+class AWSManager:
+    def __init__(self):
+        self.ec2 = boto3.client('ec2')
+        self.s3 = boto3.client('s3')
+        self.cloudwatch = boto3.client('cloudwatch')
+    
+    def get_instance_metrics(self, instance_id, hours=24):
+        end_time = datetime.utcnow()
+        start_time = end_time - timedelta(hours=hours)
+        
+        response = self.cloudwatch.get_metric_statistics(
+            Namespace='AWS/EC2',
+            MetricName='CPUUtilization',
+            Dimensions=[
+                {
+                    'Name': 'InstanceId',
+                    'Value': instance_id
+                }
+            ],
+            StartTime=start_time,
+            EndTime=end_time,
+            Period=3600,  # 1 hour
+            Statistics=['Average', 'Maximum']
+        )
+        
+        return response['Datapoints']
+    
+    def backup_to_s3(self, local_file, bucket, key):
+        try:
+            self.s3.upload_file(local_file, bucket, key)
+            print(f"Successfully uploaded {local_file} to s3://{bucket}/{key}")
+        except Exception as e:
+            print(f"Error uploading to S3: {e}")
+    
+    def list_running_instances(self):
+        response = self.ec2.describe_instances(
+            Filters=[
+                {
+                    'Name': 'instance-state-name',
+                    'Values': ['running']
+                }
+            ]
+        )
+        
+        instances = []
+        for reservation in response['Reservations']:
+            for instance in reservation['Instances']:
+                instances.append({
+                    'InstanceId': instance['InstanceId'],
+                    'InstanceType': instance['InstanceType'],
+                    'PublicIpAddress': instance.get('PublicIpAddress', 'N/A'),
+                    'LaunchTime': instance['LaunchTime'].isoformat()
+                })
+        
+        return instances
+
+# Usage example
+if __name__ == "__main__":
+    aws = AWSManager()
+    instances = aws.list_running_instances()
+    print(json.dumps(instances, indent=2))
+```
+
+## 5. 🚀 DevOps Utilities
+
+### Docker Management
+```python
+import docker
+import json
+from datetime import datetime
+
+class DockerManager:
+    def __init__(self):
+        self.client = docker.from_env()
+    
+    def cleanup_containers(self, days_old=7):
+        containers = self.client.containers.list(all=True)
+        cleaned = 0
+        
+        for container in containers:
+            if container.status == 'exited':
+                created = datetime.fromisoformat(container.attrs['Created'].replace('Z', '+00:00'))
+                age = (datetime.now(created.tzinfo) - created).days
+                
+                if age > days_old:
+                    container.remove()
+                    print(f"Removed container: {container.name}")
+                    cleaned += 1
+        
+        print(f"Cleaned up {cleaned} containers")
+    
+    def get_container_stats(self):
+        containers = self.client.containers.list()
+        stats = []
+        
+        for container in containers:
+            stats.append({
+                'name': container.name,
+                'status': container.status,
+                'image': container.image.tags[0] if container.image.tags else 'unknown',
+                'created': container.attrs['Created'],
+                'ports': container.attrs['NetworkSettings']['Ports']
+            })
+        
+        return stats
+    
+    def build_and_push(self, dockerfile_path, image_name, registry):
+        # Build image
+        image, logs = self.client.images.build(
+            path=dockerfile_path,
+            tag=f"{registry}/{image_name}:latest"
+        )
+        
+        # Push to registry
+        push_logs = self.client.images.push(
+            f"{registry}/{image_name}",
+            tag="latest"
+        )
+        
+        return image.id
+```
+
+## 6. 🔧 Advanced Scripting
+
+### Infrastructure Monitoring
+```bash
+#!/bin/bash
+
+# Advanced monitoring script with alerting
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_FILE="$SCRIPT_DIR/monitoring.conf"
+LOG_FILE="/var/log/monitoring.log"
+ALERT_THRESHOLD_CPU=80
+ALERT_THRESHOLD_MEMORY=85
+ALERT_THRESHOLD_DISK=90
+
+# Load configuration
+if [ -f "$CONFIG_FILE" ]; then
+    source "$CONFIG_FILE"
+fi
+
+# Logging function
+log_message() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
+}
+
+# Check CPU usage
+check_cpu() {
+    local cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1)
+    cpu_usage=${cpu_usage%.*}  # Remove decimal part
+    
+    if [ "$cpu_usage" -gt "$ALERT_THRESHOLD_CPU" ]; then
+        log_message "ALERT: High CPU usage: ${cpu_usage}%"
+        send_alert "High CPU Usage" "CPU usage is at ${cpu_usage}%"
+    else
+        log_message "INFO: CPU usage: ${cpu_usage}%"
+    fi
+}
+
+# Check memory usage
+check_memory() {
+    local memory_usage=$(free | grep Mem | awk '{printf "%.0f", $3/$2 * 100.0}')
+    
+    if [ "$memory_usage" -gt "$ALERT_THRESHOLD_MEMORY" ]; then
+        log_message "ALERT: High memory usage: ${memory_usage}%"
+        send_alert "High Memory Usage" "Memory usage is at ${memory_usage}%"
+    else
+        log_message "INFO: Memory usage: ${memory_usage}%"
+    fi
+}
+
+# Check disk usage
+check_disk() {
+    while read -r line; do
+        usage=$(echo "$line" | awk '{print $5}' | cut -d'%' -f1)
+        partition=$(echo "$line" | awk '{print $6}')
+        
+        if [ "$usage" -gt "$ALERT_THRESHOLD_DISK" ]; then
+            log_message "ALERT: High disk usage on $partition: ${usage}%"
+            send_alert "High Disk Usage" "Disk usage on $partition is at ${usage}%"
+        else
+            log_message "INFO: Disk usage on $partition: ${usage}%"
+        fi
+    done < <(df -h | grep -E '^/dev/')
+}
+
+# Send alert (customize based on your alerting system)
+send_alert() {
+    local subject="$1"
+    local message="$2"
+    
+    # Example: Send to Slack
+    if [ -n "$SLACK_WEBHOOK" ]; then
+        curl -X POST -H 'Content-type: application/json' \
+            --data "{\"text\":\"$subject: $message\"}" \
+            "$SLACK_WEBHOOK"
+    fi
+    
+    # Example: Send email
+    if [ -n "$ALERT_EMAIL" ]; then
+        echo "$message" | mail -s "$subject" "$ALERT_EMAIL"
+    fi
+}
+
+# Main monitoring loop
+main() {
+    log_message "Starting system monitoring"
+    
+    while true; do
+        check_cpu
+        check_memory
+        check_disk
+        
+        sleep 300  # Check every 5 minutes
+    done
+}
+
+# Signal handlers
+trap 'log_message "Monitoring stopped"; exit 0' SIGTERM SIGINT
+
+# Run main function
+main
 ```
 
 ---

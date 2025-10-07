@@ -2,6 +2,22 @@
 
 A comprehensive guide from beginner to expert level covering all essential DevOps technologies with practical examples and real-world projects.
 
+## 📚 Course Curriculum Overview
+
+| Course | Description | Duration | Level |
+|--------|-------------|----------|-------|
+| [🌟 Git For Beginners Course](#-git-for-beginners-course) | Version control fundamentals | 1 Week | Beginner |
+| [🐧 Linux Basics Course](#-linux-basics-course) | Operating system and command line | 2 Weeks | Beginner |
+| [🔧 CI/CD with Jenkins](#-cicd-with-jenkins) | Continuous integration and deployment | 2 Weeks | Intermediate |
+| [🐳 Docker & Docker Compose](#-docker--docker-compose) | Containerization technology | 2 Weeks | Intermediate |
+| [⚙️ Kubernetes](#️-kubernetes) | Container orchestration | 3 Weeks | Advanced |
+| [☁️ AWS Cloud](#️-aws-cloud) | Cloud computing platform | 2 Weeks | Intermediate |
+| [🏗️ Terraform](#️-terraform) | Infrastructure as Code | 1 Week | Advanced |
+| [🤖 Ansible](#-ansible) | Configuration management | 1 Week | Advanced |
+| [🐍 Python/Bash Scripting](#-pythonbash-scripting) | Automation and scripting | 2 Weeks | Intermediate |
+
+**Total Duration**: 16 Weeks | **Level**: Beginner to Advanced | **Projects**: 12+ hands-on projects
+
 ---
 
 # 🌟 Git For Beginners Course

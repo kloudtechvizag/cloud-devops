@@ -2,8 +2,53 @@
 
 A comprehensive guide from beginner to expert level covering all essential DevOps technologies with practical examples and real-world projects.
 
+---
+
+# 🐧 Linux Basics Course
+
+*Notes from the Linux Basics Course hosted on KodeKloud*
+
+## 📚 Course Overview
+
+```mermaid
+flowchart LR
+    A["🐧<br/>Introduction"] --> B["💻<br/>Shell Basics"]
+    B --> C["🔧<br/>Core Concepts"]
+    C --> D["📦<br/>Package Management"]
+    D --> E["⚡<br/>Advanced Shell"]
+    E --> F["🔒<br/>Security"]
+    F --> G["🌐<br/>Networking"]
+    G --> H["💾<br/>Storage"]
+    H --> I["⚙️<br/>Services"]
+    I --> J["🎯<br/>Projects"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#ffebee
+    style G fill:#f1f8e9
+    style H fill:#e3f2fd
+    style I fill:#fff8e1
+    style J fill:#f9fbe7
+```
+
 ## 📋 Table of Contents
 
+### Linux Basics Course
+- [01 - Introduction](#01---introduction)
+- [02 - Working With Shell Part I](#02---working-with-shell-part-i)
+- [03 - Linux Core Concepts](#03---linux-core-concepts)
+- [04 - Package Management](#04---package-management)
+- [05 - Working With Shell Part II](#05---working-with-shell-part-ii)
+- [06 - Security and File Permissions](#06---security-and-file-permissions)
+- [07 - Networking](#07---networking)
+- [08 - Storage in Linux](#08---storage-in-linux)
+- [09 - Service Management with SYSTEMD](#09---service-management-with-systemd)
+- [10 - The Client Demonstration](#10---the-client-demonstration)
+
+### DevOps Course Modules
 - [Course Overview](#-course-overview)
 - [Learning Path](#-learning-path)
 - [Module 1: Linux Fundamentals](#1️⃣-linux-fundamentals-week-1-2)
@@ -133,14 +178,861 @@ gantt
 
 ---
 
+# 📖 Linux Basics Course Content
+
+## 01 - 🚀 Introduction
+
+### What is Linux?
+
+```mermaid
+flowchart TD
+    A["🖥️ Operating System"] --> B["🐧 Linux Kernel"]
+    B --> C["📁 File System"]
+    B --> D["⚡ Process Management"]
+    B --> E["🔧 Hardware Control"]
+    B --> F["🌐 Network Stack"]
+    
+    style A fill:#e3f2fd
+    style B fill:#4caf50
+    style C fill:#fff3e0
+    style D fill:#f3e5f5
+    style E fill:#ffebee
+    style F fill:#e8f5e8
+```
+
+**Key Features:**
+- 🆓 **Free & Open Source**
+- 🔒 **Secure & Stable**
+- 🚀 **High Performance**
+- 🔧 **Highly Customizable**
+
+---
+
+## 02 - 💻 Working With Shell Part I
+
+### 02.1 Introduction to Shell
+
+```mermaid
+flowchart LR
+    A["👤 User"] --> B["💻 Shell"]
+    B --> C["🐧 Kernel"]
+    C --> D["🖥️ Hardware"]
+    
+    style A fill:#e1f5fe
+    style B fill:#4caf50
+    style C fill:#ff9800
+    style D fill:#9e9e9e
+```
+
+**Shell Types:**
+- `bash` - Bourne Again Shell (most common)
+- `zsh` - Z Shell
+- `fish` - Friendly Interactive Shell
+
+### 02.2 Basic Commands
+
+```bash
+# Navigation
+ls                    # List files
+ls -la               # List with details
+cd /home/user        # Change directory
+pwd                  # Print working directory
+
+# File Operations
+touch file.txt       # Create empty file
+mkdir folder         # Create directory
+cp file1 file2       # Copy file
+mv old new           # Move/rename
+rm file.txt          # Remove file
+rm -rf folder        # Remove directory
+```
+
+### 02.3 Command Line Help
+
+```bash
+# Getting Help
+man ls               # Manual page for ls
+ls --help           # Quick help
+which ls            # Find command location
+type ls             # Command type info
+```
+
+### 02.4 Bash Shell Features
+
+```mermaid
+flowchart TD
+    A["🐚 Bash Shell"] --> B["📝 Command History"]
+    A --> C["🔄 Tab Completion"]
+    A --> D["🔗 Aliases"]
+    A --> E["📊 Variables"]
+    A --> F["🔧 Functions"]
+    
+    style A fill:#4caf50
+    style B fill:#2196f3
+    style C fill:#ff9800
+    style D fill:#9c27b0
+    style E fill:#f44336
+    style F fill:#00bcd4
+```
+
+```bash
+# Bash Features
+history              # Command history
+!!                   # Repeat last command
+alias ll='ls -la'    # Create alias
+export VAR=value     # Set variable
+echo $VAR           # Use variable
+```
+
+---
+
+## 03 - 🔧 Linux Core Concepts
+
+### 03.1 The Linux Kernel
+
+```mermaid
+flowchart TD
+    subgraph "User Space"
+        A["📱 Applications"]
+        B["🐚 Shell"]
+        C["📚 Libraries"]
+    end
+    
+    subgraph "Kernel Space"
+        D["🐧 Linux Kernel"]
+        E["🔧 Device Drivers"]
+        F["📁 File Systems"]
+        G["🌐 Network Stack"]
+    end
+    
+    subgraph "Hardware"
+        H["💾 CPU"]
+        I["🧠 Memory"]
+        J["💿 Storage"]
+        K["🌐 Network"]
+    end
+    
+    A --> D
+    B --> D
+    C --> D
+    D --> E
+    D --> F
+    D --> G
+    E --> H
+    E --> I
+    E --> J
+    E --> K
+```
+
+### 03.2 Working With Hardware
+
+```bash
+# Hardware Information
+lscpu                # CPU information
+lsmem                # Memory information
+lsblk                # Block devices
+lsusb                # USB devices
+lspci                # PCI devices
+
+# System Information
+uname -a             # System info
+hostname             # System name
+uptime               # System uptime
+free -h              # Memory usage
+df -h                # Disk usage
+```
+
+### 03.3 Linux Boot Sequence
+
+```mermaid
+flowchart LR
+    A["⚡ Power On"] --> B["🔧 BIOS/UEFI"]
+    B --> C["🥾 Bootloader"]
+    C --> D["🐧 Kernel"]
+    D --> E["🎯 Init Process"]
+    E --> F["⚙️ Services"]
+    F --> G["🖥️ Login"]
+    
+    style A fill:#f44336
+    style B fill:#ff9800
+    style C fill:#ffc107
+    style D fill:#4caf50
+    style E fill:#2196f3
+    style F fill:#9c27b0
+    style G fill:#00bcd4
+```
+
+### 03.4 Run Levels
+
+```
+┌─────────────────────────────────────────┐
+│              Run Levels                 │
+├─────────────────────────────────────────┤
+│ 0 │ Halt (Shutdown)                   │
+│ 1 │ Single User Mode (Recovery)       │
+│ 2 │ Multi-user without Network        │
+│ 3 │ Multi-user with Network (CLI)     │
+│ 4 │ Unused                           │
+│ 5 │ Multi-user with GUI              │
+│ 6 │ Reboot                           │
+└─────────────────────────────────────────┘
+```
+
+### 03.5 File Types
+
+```bash
+# File Type Indicators
+-        # Regular file
+d        # Directory
+l        # Symbolic link
+c        # Character device
+b        # Block device
+p        # Named pipe (FIFO)
+s        # Socket
+```
+
+### 03.6 Filesystem Hierarchy
+
+```
+/
+├── bin/          # Essential binaries
+├── boot/         # Boot files
+├── dev/          # Device files
+├── etc/          # Configuration files
+├── home/         # User directories
+├── lib/          # Libraries
+├── media/        # Removable media
+├── mnt/          # Mount points
+├── opt/          # Optional software
+├── proc/         # Process information
+├── root/         # Root user home
+├── run/          # Runtime data
+├── sbin/         # System binaries
+├── srv/          # Service data
+├── sys/          # System information
+├── tmp/          # Temporary files
+├── usr/          # User programs
+└── var/          # Variable data
+```
+
+---
+
+## 04 - 📦 Package Management
+
+### 04.1 Package Management Distribution
+
+```mermaid
+flowchart TD
+    A["📦 Package Managers"] --> B["🔴 RPM-based"]
+    A --> C["🟠 DEB-based"]
+    
+    B --> D["📋 YUM/DNF"]
+    B --> E["⚙️ RPM"]
+    B --> F["🎩 Red Hat"]
+    B --> G["🐧 CentOS"]
+    B --> H["🦎 SUSE"]
+    
+    C --> I["📦 APT"]
+    C --> J["🔧 DPKG"]
+    C --> K["🐧 Ubuntu"]
+    C --> L["🌀 Debian"]
+    C --> M["🥝 Kali"]
+    
+    style A fill:#e3f2fd
+    style B fill:#ffebee
+    style C fill:#fff3e0
+```
+
+### 04.2 RPM and YUM
+
+```bash
+# RPM Commands
+rpm -qa              # List all packages
+rpm -qi package      # Package info
+rpm -ql package      # List package files
+rpm -ivh package.rpm # Install package
+rpm -e package       # Remove package
+
+# YUM Commands
+yum list             # List packages
+yum search keyword   # Search packages
+yum install package  # Install package
+yum update          # Update all packages
+yum remove package   # Remove package
+yum info package     # Package information
+```
+
+### 04.3 DPKG and APT
+
+```bash
+# DPKG Commands
+dpkg -l              # List packages
+dpkg -i package.deb  # Install package
+dpkg -r package      # Remove package
+dpkg -s package      # Package status
+
+# APT Commands
+apt list             # List packages
+apt search keyword   # Search packages
+apt install package  # Install package
+apt update          # Update package list
+apt upgrade         # Upgrade packages
+apt remove package   # Remove package
+apt autoremove      # Remove unused packages
+```
+
+### 04.4 APT vs APT-GET
+
+```mermaid
+flowchart LR
+    A["📦 APT"] --> B["🎯 User-friendly"]
+    A --> C["🎨 Colored output"]
+    A --> D["📊 Progress bar"]
+    
+    E["⚙️ APT-GET"] --> F["🔧 Script-friendly"]
+    E --> G["📝 Stable interface"]
+    E --> H["🤖 Automation"]
+    
+    style A fill:#4caf50
+    style E fill:#2196f3
+```
+
+---
+
 ## <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' width='40'/> Linux Fundamentals (Week 1-2)
+
+## 05 - ⚡ Working With Shell Part II
+
+### 05.1 File Compression and Archival
+
+```mermaid
+flowchart TD
+    A["📁 Files"] --> B["📦 Archive"]
+    B --> C["🗜️ Compress"]
+    
+    D["tar"] --> E[".tar"]
+    F["gzip"] --> G[".gz"]
+    H["zip"] --> I[".zip"]
+    J["bzip2"] --> K[".bz2"]
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+```
+
+```bash
+# TAR Commands
+tar -cvf archive.tar files/     # Create archive
+tar -xvf archive.tar           # Extract archive
+tar -czvf archive.tar.gz files/ # Create compressed
+tar -xzvf archive.tar.gz       # Extract compressed
+
+# ZIP Commands
+zip -r archive.zip folder/     # Create zip
+unzip archive.zip              # Extract zip
+
+# GZIP Commands
+gzip file.txt                  # Compress file
+gunzip file.txt.gz            # Decompress file
+```
+
+### 05.2 Searching For Files and Patterns
+
+```bash
+# Find Files
+find /path -name "*.txt"       # Find by name
+find /path -type f -size +1M   # Find large files
+find /path -mtime -7           # Modified in last 7 days
+
+# Search in Files
+grep "pattern" file.txt        # Search pattern
+grep -r "pattern" /path/       # Recursive search
+grep -i "pattern" file.txt     # Case insensitive
+grep -n "pattern" file.txt     # Show line numbers
+```
+
+### 05.3 IO Redirection
+
+```mermaid
+flowchart LR
+    A["📥 Input"] --> B["⚙️ Command"]
+    B --> C["📤 Output"]
+    B --> D["❌ Error"]
+    
+    E["< file"] --> A
+    C --> F["> file"]
+    C --> G[">> file"]
+    D --> H["2> file"]
+    
+    style A fill:#4caf50
+    style B fill:#2196f3
+    style C fill:#ff9800
+    style D fill:#f44336
+```
+
+```bash
+# Redirection
+command > output.txt           # Redirect output
+command >> output.txt          # Append output
+command < input.txt            # Input from file
+command 2> error.txt           # Redirect errors
+command &> all.txt             # Redirect all
+
+# Pipes
+ls -la | grep ".txt"           # Pipe output
+cat file.txt | sort | uniq     # Chain commands
+```
+
+### 05.4 Vi Editor
+
+```
+┌─────────────────────────────────────────┐
+│              Vi Editor Modes            │
+├─────────────────────────────────────────┤
+│ Normal Mode  │ Navigation & Commands   │
+│ Insert Mode  │ Text Editing           │
+│ Visual Mode  │ Text Selection         │
+│ Command Mode │ Save, Quit, Search     │
+└─────────────────────────────────────────┘
+```
+
+```bash
+# Vi Commands
+vi filename          # Open file
+i                   # Insert mode
+Esc                 # Normal mode
+:w                  # Save
+:q                  # Quit
+:wq                 # Save and quit
+:q!                 # Quit without saving
+/pattern            # Search
+dd                  # Delete line
+yy                  # Copy line
+p                   # Paste
+```
+
+---
+
+## 06 - 🔒 Security and File Permissions
+
+### 06.1 Linux Accounts
+
+```mermaid
+flowchart TD
+    A["👤 User Accounts"] --> B["👑 Root (UID 0)"]
+    A --> C["👥 System Users"]
+    A --> D["🏠 Regular Users"]
+    
+    E["👥 Groups"] --> F["🔧 Primary Group"]
+    E --> G["➕ Secondary Groups"]
+    
+    style A fill:#e3f2fd
+    style B fill:#f44336
+    style C fill:#ff9800
+    style D fill:#4caf50
+```
+
+### 06.2 User Management
+
+```bash
+# User Commands
+useradd username             # Add user
+usermod -aG group username   # Add to group
+userdel username            # Delete user
+passwd username             # Change password
+su - username               # Switch user
+sudo command                # Run as root
+
+# Group Commands
+groupadd groupname          # Add group
+groupdel groupname          # Delete group
+groups username             # Show user groups
+id username                 # User/group IDs
+```
+
+### 06.3 File Permissions
+
+```
+┌─────────────────────────────────────────┐
+│         File Permissions                │
+├─────────────────────────────────────────┤
+│  rwx rwx rwx  │  Owner Group Others     │
+│  421 421 421  │  Read Write Execute     │
+├─────────────────────────────────────────┤
+│  Example: 755 = rwxr-xr-x              │
+│  Owner: Read+Write+Execute (7)          │
+│  Group: Read+Execute (5)                │
+│  Others: Read+Execute (5)               │
+└─────────────────────────────────────────┘
+```
+
+```bash
+# Permission Commands
+chmod 755 file.txt          # Change permissions
+chmod u+x file.txt          # Add execute for owner
+chmod g-w file.txt          # Remove write for group
+chown user:group file.txt   # Change ownership
+chgrp group file.txt        # Change group
+umask 022                   # Set default permissions
+```
+
+### 06.4 SSH and SCP
+
+```bash
+# SSH Commands
+ssh user@hostname           # Connect to remote
+ssh -i key.pem user@host    # Connect with key
+ssh-keygen -t rsa           # Generate SSH key
+ssh-copy-id user@host       # Copy public key
+
+# SCP Commands
+scp file.txt user@host:/path/    # Copy to remote
+scp user@host:/path/file.txt .   # Copy from remote
+scp -r folder/ user@host:/path/  # Copy directory
+```
+
+### 06.5 IPtables
+
+```bash
+# IPtables Commands
+iptables -L                 # List rules
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -j DROP   # Drop all other
+iptables-save > rules.txt   # Save rules
+```
+
+### 06.6 Cronjob
+
+```bash
+# Crontab Format
+# * * * * * command
+# │ │ │ │ │
+# │ │ │ │ └─── Day of week (0-7)
+# │ │ │ └───── Month (1-12)
+# │ │ └─────── Day of month (1-31)
+# │ └───────── Hour (0-23)
+# └─────────── Minute (0-59)
+
+# Crontab Commands
+crontab -e                  # Edit crontab
+crontab -l                  # List crontab
+crontab -r                  # Remove crontab
+
+# Examples
+0 2 * * * /backup.sh        # Daily at 2 AM
+*/15 * * * * /check.sh       # Every 15 minutes
+0 0 1 * * /monthly.sh       # Monthly on 1st
+```
+
+---
+
+## 07 - 🌐 Networking
+
+### 07.1 DNS
+
+```mermaid
+flowchart LR
+    A["💻 Client"] --> B["🏠 Local DNS"]
+    B --> C["🌐 Root DNS"]
+    C --> D["🏢 TLD DNS"]
+    D --> E["📍 Authoritative DNS"]
+    E --> F["📧 IP Address"]
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#ffebee
+    style E fill:#f3e5f5
+    style F fill:#e1f5fe
+```
+
+```bash
+# DNS Commands
+nslookup google.com         # DNS lookup
+dig google.com              # Detailed DNS info
+host google.com             # Simple DNS lookup
+
+# DNS Configuration
+/etc/hosts                  # Local DNS entries
+/etc/resolv.conf           # DNS servers
+```
+
+### 07.2 Networking Basics
+
+```bash
+# Network Commands
+ifconfig                    # Network interfaces
+ip addr show               # Show IP addresses
+ip route show              # Show routing table
+netstat -tuln              # Show listening ports
+ss -tuln                   # Modern netstat
+ping google.com            # Test connectivity
+traceroute google.com      # Trace route
+
+# Network Configuration
+/etc/network/interfaces    # Network config (Debian)
+/etc/sysconfig/network-scripts/ # Network config (RHEL)
+```
+
+### 07.3 Troubleshooting
+
+```mermaid
+flowchart TD
+    A["🔍 Network Issue"] --> B["📡 Check Interface"]
+    B --> C["🌐 Check IP"]
+    C --> D["🚪 Check Gateway"]
+    D --> E["📍 Check DNS"]
+    E --> F["🎯 Check Service"]
+    
+    style A fill:#f44336
+    style B fill:#ff9800
+    style C fill:#ffc107
+    style D fill:#4caf50
+    style E fill:#2196f3
+    style F fill:#9c27b0
+```
+
+```bash
+# Troubleshooting Steps
+1. ping 127.0.0.1          # Test loopback
+2. ping gateway_ip          # Test gateway
+3. ping 8.8.8.8            # Test internet
+4. nslookup google.com      # Test DNS
+5. telnet host port         # Test service
+```
+
+---
+
+## 08 - 💾 Storage in Linux
+
+### 08.1 Storage Basics
+
+```mermaid
+flowchart TD
+    A["💾 Physical Storage"] --> B["🔧 Partitions"]
+    B --> C["📁 File Systems"]
+    C --> D["📂 Mount Points"]
+    
+    E["HDD/SSD"] --> F["/dev/sda"]
+    F --> G["/dev/sda1"]
+    G --> H["ext4"]
+    H --> I["/home"]
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+    style D fill:#ffebee
+```
+
+### 08.2 File System in Linux
+
+```bash
+# File System Commands
+lsblk                       # List block devices
+fdisk -l                    # List partitions
+df -h                       # Disk usage
+du -sh /path               # Directory size
+
+# Partition Management
+fdisk /dev/sda             # Partition disk
+mkfs.ext4 /dev/sda1        # Create file system
+mount /dev/sda1 /mnt       # Mount partition
+umount /mnt                # Unmount partition
+
+# Permanent Mounts
+/etc/fstab                 # File system table
+```
+
+### 08.3 DAS, NAS, and SAN
+
+```
+┌─────────────────────────────────────────┐
+│            Storage Types                │
+├─────────────────────────────────────────┤
+│ DAS │ Direct Attached Storage         │
+│     │ - Local disks                   │
+│     │ - USB drives                    │
+├─────────────────────────────────────────┤
+│ NAS │ Network Attached Storage        │
+│     │ - File-level access             │
+│     │ - NFS, SMB protocols            │
+├─────────────────────────────────────────┤
+│ SAN │ Storage Area Network            │
+│     │ - Block-level access            │
+│     │ - Fibre Channel, iSCSI          │
+└─────────────────────────────────────────┘
+```
+
+### 08.4 LVM (Logical Volume Manager)
+
+```mermaid
+flowchart TD
+    A["💿 Physical Volumes"] --> B["📦 Volume Group"]
+    B --> C["📁 Logical Volumes"]
+    
+    D["/dev/sda1"] --> E["vg_main"]
+    F["/dev/sdb1"] --> E
+    E --> G["lv_root"]
+    E --> H["lv_home"]
+    E --> I["lv_var"]
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+```
+
+```bash
+# LVM Commands
+pvcreate /dev/sda1          # Create physical volume
+vgcreate vg_main /dev/sda1  # Create volume group
+lvcreate -L 10G -n lv_root vg_main # Create logical volume
+
+# LVM Management
+pvdisplay                   # Show physical volumes
+vgdisplay                   # Show volume groups
+lvdisplay                   # Show logical volumes
+
+# Extend LVM
+lvextend -L +5G /dev/vg_main/lv_root
+resize2fs /dev/vg_main/lv_root
+```
+
+---
+
+## 09 - ⚙️ Service Management with SYSTEMD
+
+### 09.1 Creating a SYSTEMD Service
+
+```bash
+# Service File Location
+/etc/systemd/system/myapp.service
+```
+
+```ini
+# myapp.service
+[Unit]
+Description=My Application
+After=network.target
+
+[Service]
+Type=simple
+User=myuser
+WorkingDirectory=/opt/myapp
+ExecStart=/opt/myapp/start.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### 09.2 SYSTEMD Tools
+
+```bash
+# Service Management
+systemctl start myapp       # Start service
+systemctl stop myapp        # Stop service
+systemctl restart myapp     # Restart service
+systemctl enable myapp      # Enable on boot
+systemctl disable myapp     # Disable on boot
+systemctl status myapp      # Check status
+
+# System Management
+systemctl list-units        # List all units
+systemctl list-unit-files   # List unit files
+systemctl daemon-reload     # Reload systemd
+journalctl -u myapp         # View service logs
+journalctl -f               # Follow logs
+```
+
+### 09.3 Service States
+
+```mermaid
+flowchart LR
+    A["⏹️ Stopped"] --> B["▶️ Starting"]
+    B --> C["✅ Running"]
+    C --> D["⏸️ Stopping"]
+    D --> A
+    C --> E["🔄 Reloading"]
+    E --> C
+    C --> F["❌ Failed"]
+    F --> A
+    
+    style A fill:#9e9e9e
+    style B fill:#ff9800
+    style C fill:#4caf50
+    style D fill:#ff5722
+    style E fill:#2196f3
+    style F fill:#f44336
+```
+
+---
+
+## 10 - 🎯 The Client Demonstration
+
+### 10.1 Troubleshoot the Development Environment
+
+```mermaid
+flowchart TD
+    A["🔍 Problem Report"] --> B["📊 Gather Information"]
+    B --> C["🔧 Identify Issue"]
+    C --> D["💡 Implement Solution"]
+    D --> E["✅ Verify Fix"]
+    E --> F["📝 Document"]
+    
+    style A fill:#f44336
+    style B fill:#ff9800
+    style C fill:#ffc107
+    style D fill:#4caf50
+    style E fill:#2196f3
+    style F fill:#9c27b0
+```
+
+### Common Troubleshooting Steps
+
+```bash
+# System Health Check
+top                         # CPU/Memory usage
+df -h                       # Disk space
+free -h                     # Memory usage
+ps aux                      # Running processes
+
+# Service Issues
+systemctl status service    # Check service status
+journalctl -u service       # Check service logs
+systemctl restart service   # Restart service
+
+# Network Issues
+ping gateway               # Test connectivity
+netstat -tuln              # Check ports
+ss -tuln                   # Modern port check
+
+# File Permission Issues
+ls -la file                # Check permissions
+chmod 644 file             # Fix permissions
+chown user:group file      # Fix ownership
+```
+
+### Performance Monitoring
+
+```bash
+# System Monitoring
+htop                       # Interactive process viewer
+iotop                      # I/O monitoring
+nload                      # Network monitoring
+vmstat 1                   # Virtual memory stats
+sar -u 1 10               # CPU utilization
+```
+
+---
 
 ### 📖 Learning Objectives
 Master Linux command line, file systems, and system administration basics.
 
 ### 📋 Topics Covered
 
-#### 1.1 Linux Basics
+#### 1.1 Linux Architecture
 
 ```mermaid
 flowchart TD
@@ -210,8 +1102,43 @@ systemctl enable nginx  # Enable on boot
 systemctl status nginx  # Check status
 ```
 
-### 🎯 Practical Exercise
-Create a simple backup script that archives log files older than 7 days.
+### 🎯 Practical Exercises
+
+**Exercise 1: System Information Script**
+```bash
+#!/bin/bash
+# system_info.sh
+echo "=== System Information ==="
+echo "Hostname: $(hostname)"
+echo "OS: $(cat /etc/os-release | grep PRETTY_NAME | cut -d'=' -f2)"
+echo "Kernel: $(uname -r)"
+echo "Uptime: $(uptime -p)"
+echo "CPU: $(lscpu | grep 'Model name' | cut -d':' -f2 | xargs)"
+echo "Memory: $(free -h | grep Mem | awk '{print $2}')"
+echo "Disk: $(df -h / | tail -1 | awk '{print $2}')"
+```
+
+**Exercise 2: Log Cleanup Script**
+```bash
+#!/bin/bash
+# cleanup_logs.sh
+LOG_DIR="/var/log"
+DAYS=7
+
+echo "Cleaning logs older than $DAYS days..."
+find $LOG_DIR -name "*.log" -mtime +$DAYS -exec rm {} \;
+echo "Cleanup completed!"
+```
+
+**Exercise 3: User Management**
+```bash
+# Create development team
+sudo groupadd developers
+sudo useradd -m -G developers alice
+sudo useradd -m -G developers bob
+echo "alice:password123" | sudo chpasswd
+echo "bob:password123" | sudo chpasswd
+```
 
 ---
 
@@ -678,6 +1605,82 @@ volumes:
   postgres_data:
 ```
 
+### 🎯 Linux Practical Projects
+
+**Project 1: Web Server Setup**
+```bash
+# Install and configure Apache
+sudo apt update
+sudo apt install apache2 -y
+sudo systemctl start apache2
+sudo systemctl enable apache2
+
+# Create virtual host
+sudo mkdir -p /var/www/mysite
+echo "<h1>Welcome to My Site</h1>" | sudo tee /var/www/mysite/index.html
+
+# Configure virtual host
+sudo tee /etc/apache2/sites-available/mysite.conf << EOF
+<VirtualHost *:80>
+    ServerName mysite.local
+    DocumentRoot /var/www/mysite
+    ErrorLog \${APACHE_LOG_DIR}/mysite_error.log
+    CustomLog \${APACHE_LOG_DIR}/mysite_access.log combined
+</VirtualHost>
+EOF
+
+sudo a2ensite mysite.conf
+sudo systemctl reload apache2
+```
+
+**Project 2: Backup System**
+```bash
+#!/bin/bash
+# backup_system.sh
+BACKUP_DIR="/backup"
+SOURCE_DIRS=("/home" "/etc" "/var/www")
+DATE=$(date +%Y%m%d_%H%M%S)
+
+mkdir -p $BACKUP_DIR
+
+for dir in "${SOURCE_DIRS[@]}"; do
+    if [ -d "$dir" ]; then
+        echo "Backing up $dir..."
+        tar -czf "$BACKUP_DIR/$(basename $dir)_$DATE.tar.gz" "$dir"
+    fi
+done
+
+# Keep only last 7 days of backups
+find $BACKUP_DIR -name "*.tar.gz" -mtime +7 -delete
+echo "Backup completed: $DATE"
+```
+
+**Project 3: System Monitoring Dashboard**
+```bash
+#!/bin/bash
+# monitor.sh
+while true; do
+    clear
+    echo "=== System Monitor ==="
+    echo "Time: $(date)"
+    echo ""
+    echo "CPU Usage:"
+    top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1
+    echo ""
+    echo "Memory Usage:"
+    free -h | grep Mem
+    echo ""
+    echo "Disk Usage:"
+    df -h | grep -E '^/dev/'
+    echo ""
+    echo "Network Connections:"
+    ss -tuln | wc -l
+    echo ""
+    echo "Press Ctrl+C to exit"
+    sleep 5
+done
+```
+
 ### 🎯 Practical Exercise
 Containerize a full-stack application (frontend, backend, database) using Docker Compose.
 
@@ -838,6 +1841,64 @@ spec:
 └─────────────────────────────────────────────────────────────┘
 ```
 
+### 🎯 Advanced Linux Projects
+
+**Project 4: Load Balancer Setup**
+```bash
+# Install HAProxy
+sudo apt install haproxy -y
+
+# Configure HAProxy
+sudo tee /etc/haproxy/haproxy.cfg << EOF
+global
+    daemon
+
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend web_frontend
+    bind *:80
+    default_backend web_servers
+
+backend web_servers
+    balance roundrobin
+    server web1 192.168.1.10:80 check
+    server web2 192.168.1.11:80 check
+EOF
+
+sudo systemctl restart haproxy
+```
+
+**Project 5: Security Hardening**
+```bash
+#!/bin/bash
+# security_hardening.sh
+
+# Update system
+sudo apt update && sudo apt upgrade -y
+
+# Configure firewall
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw --force enable
+
+# Disable root login
+sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+sudo systemctl restart ssh
+
+# Install fail2ban
+sudo apt install fail2ban -y
+sudo systemctl enable fail2ban
+
+echo "Security hardening completed!"
+```
+
 ### 🎯 Practical Exercise
 Deploy a microservices application with multiple services, ingress, and persistent storage.
 
@@ -992,6 +2053,50 @@ hotfix/*        ──▶ Hotfix Testing
 pull requests   ──▶ PR Validation
 ```
 
+### 🎯 Linux Certification Preparation
+
+**Essential Commands Cheat Sheet:**
+```bash
+# File Operations
+ls -la                     # List files with details
+cp -r source dest         # Copy recursively
+mv old new                # Move/rename
+find /path -name "*.txt"   # Find files
+grep -r "pattern" /path/   # Search in files
+
+# System Information
+ps aux                    # Running processes
+top                       # Real-time processes
+df -h                     # Disk usage
+free -h                   # Memory usage
+uname -a                  # System info
+
+# Network
+ping host                 # Test connectivity
+netstat -tuln            # Show ports
+ss -tuln                 # Modern netstat
+ifconfig                 # Network interfaces
+
+# Services
+systemctl status service  # Check service
+systemctl start service   # Start service
+systemctl enable service  # Enable on boot
+journalctl -u service    # View logs
+
+# Permissions
+chmod 755 file           # Change permissions
+chown user:group file    # Change ownership
+sudo command             # Run as root
+```
+
+**Practice Scenarios:**
+1. Set up a web server with SSL
+2. Configure automated backups
+3. Implement log rotation
+4. Set up user authentication
+5. Configure network services
+6. Troubleshoot system issues
+
 ### 🎯 Practical Exercise
 Create a complete CI/CD pipeline that builds, tests, and deploys a containerized application to Kubernetes.
 
@@ -1082,6 +2187,40 @@ stage('Quality Gate') {
   }
 }
 ```
+
+### 🏆 Linux Mastery Checklist
+
+**Beginner Level ✅**
+- [ ] Navigate file system efficiently
+- [ ] Manage files and directories
+- [ ] Understand file permissions
+- [ ] Use basic text editors (vi/nano)
+- [ ] Manage processes
+- [ ] Configure network settings
+
+**Intermediate Level 🔥**
+- [ ] Write shell scripts
+- [ ] Manage users and groups
+- [ ] Configure services with systemd
+- [ ] Set up cron jobs
+- [ ] Configure SSH and security
+- [ ] Manage packages
+
+**Advanced Level 🚀**
+- [ ] Configure web servers
+- [ ] Set up load balancers
+- [ ] Implement monitoring
+- [ ] Manage storage (LVM)
+- [ ] Network troubleshooting
+- [ ] Security hardening
+
+**Expert Level 💎**
+- [ ] Kernel tuning
+- [ ] Custom service creation
+- [ ] Advanced networking
+- [ ] Performance optimization
+- [ ] Disaster recovery
+- [ ] Automation scripting
 
 ### 🎯 Practical Exercise
 Integrate SonarQube into existing CI/CD pipeline and configure quality gates.
